@@ -1,0 +1,34 @@
+@import "../../../assets/sass/variables";
+.root {
+  display: flex;
+
+  aside {
+    flex: 0 0 236px;
+  }
+
+  &__children {
+    margin-top: 90px;
+    width: calc(100% - 236px);
+    height: calc(100vh - 92px);
+
+    &_paddings {
+      padding: 40px 100px 0 64px;
+    }
+  }
+}
+
+@media (max-width: $md) {
+  .root {
+    aside {
+      display: none;
+    }
+
+    &__children {
+      width: 100%;
+
+      &_paddings {
+        padding: 0 0 0 0;
+      }
+    }
+  }
+}

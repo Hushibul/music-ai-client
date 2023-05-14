@@ -1,0 +1,17 @@
+@import "./variables";
+
+.bg-red {
+  background-color: $red;
+}
+
+.bg-light {
+  background-color: $buttonLight;
+}
+
+.text-dark {
+  color: $black;
+}
+
+.text-light {
+  color: $white;
+}

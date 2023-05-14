@@ -1,0 +1,49 @@
+@import "../../assets/sass/_variables";
+
+.hero {
+  border-radius: 15px;
+  position: relative;
+  background-image: url("../../assets/images/others/heroBg.png");
+
+  &__content {
+    padding: 25px 0 25px 80px;
+    width: 50%;
+  }
+
+  &__singerBg {
+    position: absolute;
+    bottom: 0;
+    right: -50px;
+  }
+
+  p {
+    font-size: 20px;
+    color: $white;
+  }
+}
+
+@media (max-width: $md) {
+  .hero {
+    &__content {
+      margin: auto;
+      width: 75%;
+      text-align: center;
+      padding: 20px;
+    }
+
+    &__singerBg {
+      display: none;
+    }
+  }
+}
+
+@media (max-width: $sm) {
+  .hero {
+    &__content {
+      width: 100%;
+    }
+    p {
+      font-size: 16px;
+    }
+  }
+}

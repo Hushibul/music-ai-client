@@ -1,0 +1,26 @@
+@import "../../assets/sass/base/variables";
+
+.displayaudio {
+  border-radius: 57px;
+  padding: 8px;
+  &__artistImage {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+  }
+  &__audioDetails {
+    width: 200px;
+  }
+}
+
+.audioplayer {
+  height: max-content;
+}
+
+// @media (max-width: $sm) {
+//   .displayaudio {
+//     &__audioDetails {
+//       width: fit-content;
+//     }
+//   }
+// }

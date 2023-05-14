@@ -1,0 +1,25 @@
+@import "./variables";
+
+@font-face {
+  font-family: "Adobe Clean", sans-serif;
+  font-style: normal;
+  font-weight: 300;
+  src: local("Adobe Clean"), url("../fonts/AdobeCleanLight.woff") format("woff");
+}
+@font-face {
+  font-family: "Adobe Clean", sans-serif;
+  font-style: normal;
+  font-weight: 700;
+  src: local("Adobe Clean"), url("../fonts/AdobeCleanBold.woff") format("woff");
+}
+@font-face {
+  font-family: "Adobe Clean", sans-serif;
+  font-style: normal;
+  font-weight: 900;
+  src: local("Adobe Clean"), url("../fonts/AdobeCleanBlack.woff") format("woff");
+}
+
+body {
+  font-family: "Adobe Clean", sans-serif;
+  background-color: $hoveredColor;
+}

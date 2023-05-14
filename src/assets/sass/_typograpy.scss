@@ -1,0 +1,43 @@
+@import "./_variables";
+
+.title {
+  font-size: clamp(1.875rem, 1.3194rem + 2.7778vw, 3.75rem);
+  color: $white;
+  font-weight: 900;
+}
+
+.heading-primary {
+  font-size: clamp(1.125rem, 0.9398rem + 0.9259vw, 1.75rem);
+  color: $darkgray;
+}
+
+.heading-secondary {
+  font-size: clamp(1rem, 0.8519rem + 0.7407vw, 1.5rem);
+  color: $darkgray;
+}
+
+.nav-heading {
+  font-size: 16px;
+  color: $darkgray;
+  font-weight: 900;
+}
+
+.subtitle {
+  font-size: clamp(0.875rem, 0.838rem + 0.1852vw, 1rem);
+  font-weight: 700;
+}
+
+.text-small {
+  font-size: 12px;
+  color: $lightText;
+}
+
+.text-medium {
+  font-size: 14px;
+  color: $lightText;
+}
+
+.text-normal {
+  font-size: 16px;
+  color: $lightText;
+}

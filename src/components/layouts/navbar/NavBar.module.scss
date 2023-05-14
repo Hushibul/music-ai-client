@@ -1,0 +1,57 @@
+@import "../../../assets/sass/base/variables";
+
+.navbar {
+  background-color: $white;
+  position: fixed;
+  z-index: 20;
+  width: 100%;
+
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+
+  &__searchbar {
+    border-radius: 10px;
+    width: 426px;
+    input:focus-within {
+      outline: none;
+    }
+  }
+}
+
+.sidebar {
+  position: fixed;
+  left: 0;
+  top: 70px;
+  width: 235px;
+  display: block;
+  background-color: $white;
+  height: calc(100vh - 70px);
+  padding: 20px;
+  z-index: 100;
+
+  &__social {
+    a {
+      text-decoration: none;
+      color: $lightText;
+      font-size: 16px;
+    }
+  }
+}
+
+@media (max-width: $md) {
+  .navbar {
+    &__searchbar {
+      width: fit-content;
+    }
+  }
+}
+
+@media (max-width: $sm) {
+  .navbar {
+    img {
+      max-width: 25%;
+    }
+  }
+}
