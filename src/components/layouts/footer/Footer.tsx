@@ -8,6 +8,10 @@ import {
 } from "../../../assets/constants/constants";
 import { Link } from "react-router-dom";
 
+import TwitterLogo from "../../../assets/images/icons/twitter.svg";
+import FacebookLogo from "../../../assets/images/icons/facebook.svg";
+import InstagramLogo from "../../../assets/images/icons/instagram.svg";
+
 interface IFooter {
   id: number;
   title: string;
@@ -18,10 +22,16 @@ const Footer = () => {
   return (
     <footer className={`${Styles.footer} d-flex flex-column flex-sm-row`}>
       <div className={Styles.footer__left}>
-        <p className="text-small text-center text-md-start">
+        <p className="text-medium text-center text-md-start">
           Bensound is the best place to find royalty-free music that pops your
           videos up!
         </p>
+
+        <div className="d-flex gap-3 justify-content-center justify-content-md-start align-items-center">
+          <img src={TwitterLogo} alt="Twiiter Logo" />
+          <img src={FacebookLogo} alt="Facebook Logo" />
+          <img src={InstagramLogo} alt="Instagram Logo" />
+        </div>
       </div>
       <div className={`${Styles.footer__right} row`}>
         <div className="col-6 col-md-4 col-lg-3 col-xl-2">

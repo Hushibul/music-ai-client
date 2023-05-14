@@ -1,21 +1,26 @@
-@import "../../../assets/sass/base/variables";
+@import "../../../assets/sass/variables";
 
 .navbar {
   background-color: $white;
   position: fixed;
   z-index: 20;
+  padding: 15px;
   width: 100%;
 
-  img {
+  .navbar__brandLogo {
     max-width: 100%;
     height: auto;
   }
 
   &__searchbar {
     border-radius: 10px;
-    width: 426px;
-    input:focus-within {
-      outline: none;
+    width: 380px;
+    margin-left: 80px;
+    input {
+      border: none;
+      &:focus-within {
+        outline: none;
+      }
     }
   }
 }
@@ -28,8 +33,11 @@
   display: block;
   background-color: $white;
   height: calc(100vh - 70px);
-  padding: 20px;
   z-index: 100;
+
+  &__paddings {
+    padding-left: 40px;
+  }
 
   &__social {
     a {
@@ -40,17 +48,26 @@
   }
 }
 
+@media (max-width: $lg) {
+  .navbar {
+    &__searchbar {
+      margin-left: 40px;
+      width: fit-content;
+    }
+  }
+}
+
 @media (max-width: $md) {
   .navbar {
     &__searchbar {
-      width: fit-content;
+      margin-left: auto;
     }
   }
 }
 
 @media (max-width: $sm) {
   .navbar {
-    img {
+    .navbar__brandLogo {
       max-width: 25%;
     }
   }

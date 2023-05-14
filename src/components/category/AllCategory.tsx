@@ -1,7 +1,5 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-// import { AllCategories } from "../../assets/constants/constants";
+import Styles from "./AllCategory.module.scss";
 import {
-  allCategorie,
   Moods,
   Instruments,
   Genres,
@@ -9,75 +7,114 @@ import {
   Themes,
   Eras,
 } from "../../assets/constants/constants";
+import { Link } from "react-router-dom";
 import { useState } from "react";
 
-interface ICategory {
+interface ILink {
   id: number;
   title: string;
+  path?: string;
 }
 
 const AllCategory = () => {
-  const [category, setCategory] = useState<ICategory[]>(Moods);
+  const [category, setCategory] = useState<ILink[]>(Moods);
   return (
-    <div className="mt-5">
-      <h3 className="heading-secondary my-4">All Categories</h3>
+    <div className={Styles.allcategory}>
+      <h3 className={Styles.allcategory__title}>All Category</h3>
 
-      <ul className="d-none d-md-flex flex-wrap flex-column allCat list-unstyled">
-        <li className="title subtitle-secondary mb-3">
-          {allCategorie?.[0]?.title}
+      {/* Medium to Large    */}
+      <ul
+        className={`${Styles.allcategory__categories} d-none mt-5 list-unstyled d-md-flex flex-column flex-wrap`}
+      >
+        {/* Moods  */}
+        <li className={`${Styles.allcategory__categories_heading} mb-4`}>
+          Moods
         </li>
-        {allCategorie?.[0]?.items?.map((item: ICategory) => (
-          <li className="item text-medium mb-2" key={item?.id}>
-            {item?.title}
+        {Moods.map((item: ILink) => (
+          <li className="pb-3" key={item.id}>
+            <Link className="text-normal text-dark text-decoration-none" to="#">
+              {item.title}
+            </Link>
           </li>
         ))}
-        <hr />
-        <li className="title subtitle-secondary mb-3">
-          {allCategorie?.[1]?.title}
+
+        {/* Instruments  */}
+        <li className={`${Styles.allcategory__categories_heading} mb-4`}>
+          Instruments
         </li>
-        {allCategorie?.[1]?.items?.map((item: ICategory) => (
-          <li className="item text-medium mb-2" key={item?.id}>
-            {item?.title}
+        {Instruments.map((item: ILink) => (
+          <li className="pb-3" key={item.id}>
+            <Link
+              className="text-normal text-dark text-decoration-none"
+              to={"#"}
+            >
+              {item.title}
+            </Link>
           </li>
         ))}
-        <hr />
-        <li className="title subtitle-secondary mb-3">
-          {allCategorie?.[2]?.title}
+
+        {/* Genres  */}
+        <li className={`${Styles.allcategory__categories_heading} mb-4`}>
+          Genres
         </li>
-        {allCategorie?.[2]?.items?.map((item: ICategory) => (
-          <li className="item text-medium mb-2" key={item?.id}>
-            {item?.title}
+        {Genres.map((item: ILink) => (
+          <li className="pb-3" key={item.id}>
+            <Link
+              className="text-normal text-dark text-decoration-none"
+              to={"#"}
+            >
+              {item.title}
+            </Link>
           </li>
         ))}
-        <hr />
-        <li className="title subtitle-secondary mb-3">
-          {allCategorie?.[3]?.title}
+
+        {/* Occations  */}
+        <li className={`${Styles.allcategory__categories_heading} mb-4`}>
+          Occations
         </li>
-        {allCategorie?.[3]?.items?.map((item: ICategory) => (
-          <li className="item text-medium mb-2" key={item?.id}>
-            {item?.title}
+        {Occations.map((item: ILink) => (
+          <li className="pb-3" key={item.id}>
+            <Link
+              className="text-normal text-dark text-decoration-none"
+              to={"#"}
+            >
+              {item.title}
+            </Link>
           </li>
         ))}
-        <hr />
-        <li className="title subtitle-secondary mb-3">
-          {allCategorie?.[4]?.title}
+
+        {/* Themes  */}
+        <li className={`${Styles.allcategory__categories_heading} mb-4`}>
+          Themes
         </li>
-        {allCategorie?.[4]?.items?.map((item: ICategory) => (
-          <li className="item text-medium mb-2" key={item?.id}>
-            {item?.title}
+        {Themes.map((item: ILink) => (
+          <li className="pb-3" key={item.id}>
+            <Link
+              className="text-normal text-dark text-decoration-none"
+              to={"#"}
+            >
+              {item.title}
+            </Link>
           </li>
         ))}
-        <hr />
-        <li className="title subtitle-secondary mb-3">
-          {allCategorie?.[5]?.title}
+
+        {/* Eras  */}
+        <li className={`${Styles.allcategory__categories_heading} mb-4`}>
+          Eras
         </li>
-        {allCategorie?.[5]?.items?.map((item: ICategory) => (
-          <li className="item text-medium mb-2" key={item?.id}>
-            {item?.title}
+        {Eras.map((item: ILink) => (
+          <li className="pb-3" key={item.id}>
+            <Link
+              className="text-normal text-dark text-decoration-none"
+              to={"#"}
+            >
+              {item.title}
+            </Link>
           </li>
         ))}
       </ul>
 
+      {/* Mobile Devices  */}
       <ul className="d-flex gap-2 d-md-none flex-wrap list-unstyled pb-3 border-bottom border-secondary">
         <li
           onClick={() => setCategory(Moods)}
@@ -87,6 +124,7 @@ const AllCategory = () => {
         >
           Moods
         </li>
+
         <li
           onClick={() => setCategory(Instruments)}
           className={`rounded-3 cursor-pointer border border-dark shadow text-small px-3 py-2 ${
@@ -130,7 +168,7 @@ const AllCategory = () => {
       </ul>
 
       <ul className="d-flex d-md-none flex-wrap gap-2 list-unstyled">
-        {category.map((item: ICategory) => (
+        {category.map((item: ILink) => (
           <li
             className="px-3 py-2 border border-secondary text-small rounded-3"
             key={item.id}

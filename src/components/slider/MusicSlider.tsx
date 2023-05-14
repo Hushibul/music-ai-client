@@ -8,9 +8,19 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css/scrollbar";
 
-import SliderCardOne from "../Cards/SliderCardOne";
-import SliderCardTwo from "../Cards/SliderCardTwo";
+import SliderCardOne from "../cards/SliderCardOne";
+import SliderCardTwo from "../cards/SliderCardTwo";
 
+interface ISlider {
+  spLarge: number;
+  spMedium: number;
+  spSmall: number;
+  type: number;
+  title: string;
+  list: any;
+}
+
+import Styles from "./MusicSlider.module.scss";
 const MusicSlider = ({
   spLarge,
   spMedium,
@@ -18,12 +28,28 @@ const MusicSlider = ({
   type,
   title,
   list,
-}: any) => {
+}: ISlider) => {
   return (
-    <div className={`mt-4 ${type === 1 ? "versionOne" : "versionTwo"}`}>
+    <div
+      className={`mt-4 ${type === 1 ? "versionOne" : "versionTwo"} ${
+        Styles.musicslider
+      }`}
+    >
       <div className="d-flex justify-content-between align-items-center">
-        <h2 className="heading-secondary my-3">{title}</h2>
-        <p className={`text-small ${type === 1 ? "d-none" : "d-block"}`}>
+        <h5
+          className={` ${
+            type === 1
+              ? Styles.musicslider__titleOne
+              : Styles.musicslider__titleTwo
+          }`}
+        >
+          {title}
+        </h5>
+        <p
+          className={`text-medium fw-bold text-dark ${
+            type === 1 ? "d-none" : "d-block"
+          }`}
+        >
           See All
         </p>
       </div>
@@ -49,13 +75,17 @@ const MusicSlider = ({
         {list.map((item: any) => (
           <SwiperSlide key={item?.id}>
             {type === 1 ? (
-              <SliderCardOne image={item?.bg} title={item?.title} />
+              <div className={Styles.musicslider__containerOne}>
+                <SliderCardOne image={item?.bg} title={item?.title} />
+              </div>
             ) : (
-              <SliderCardTwo
-                image={item?.image}
-                title={item?.title}
-                artist={item?.artist}
-              />
+              <div className={Styles.musicslider__containerTwo}>
+                <SliderCardTwo
+                  image={item?.image}
+                  title={item?.title}
+                  artist={item?.artist}
+                />
+              </div>
             )}
           </SwiperSlide>
         ))}

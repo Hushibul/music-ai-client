@@ -1,4 +1,4 @@
-// @import url("../../assets/sass/_variables");
+@import "../../assets/sass/variables";
 
 .sliderCard {
   border-radius: 10px;
@@ -20,7 +20,7 @@
 
 .sliderCardTwo {
   img {
-    border-radius: 20px;
+    border-radius: 15px;
     overflow: hidden;
   }
 }

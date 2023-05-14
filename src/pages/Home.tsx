@@ -1,4 +1,5 @@
 import { Musics, exploreMusic } from "../assets/constants/constants";
+import AllCategory from "../components/category/AllCategory";
 import Hero from "../components/hero/Hero";
 import MusicSlider from "../components/slider/MusicSlider";
 
@@ -22,21 +23,23 @@ const Home = () => {
         type={1}
       />
       <MusicSlider
-        spSmall={2}
-        spMedium={3}
-        spLarge={4}
+        spSmall={3}
+        spMedium={4}
+        spLarge={6}
         title="Cinema"
         list={Musics}
         type={2}
       />
       <MusicSlider
-        spSmall={2}
-        spMedium={3}
-        spLarge={4}
+        spSmall={3}
+        spMedium={4}
+        spLarge={6}
         title="Ambient"
         list={shuffled}
         type={2}
       />
+
+      <AllCategory />
     </div>
   );
 };

@@ -1,0 +1,37 @@
+@import "../../assets/sass/variables";
+
+.musicslider {
+  &__containerOne {
+    padding-bottom: 30px;
+    border-bottom: 2px dashed $borderLight;
+    margin-bottom: 50px;
+  }
+
+  //   &__containerTwo {
+  //   }
+
+  &__titleOne {
+    font-size: clamp(1.25rem, 1.1019rem + 0.7407vw, 1.75rem);
+    color: $darkgray;
+    border-bottom: 1px solid $borderLight;
+    padding-bottom: 10px;
+    margin-bottom: 30px;
+  }
+  &__titleTwo {
+    font-size: clamp(1.125rem, 1.0139rem + 0.5556vw, 1.5rem);
+    color: $darkgray;
+    margin-bottom: 30px;
+  }
+}
+
+@media (max-width: $md) {
+  .musicslider {
+    &__titleOne {
+      padding-bottom: 6px;
+      margin-bottom: 12px;
+    }
+    &__titleTwo {
+      margin-bottom: 12px;
+    }
+  }
+}

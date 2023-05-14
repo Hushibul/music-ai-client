@@ -2,7 +2,7 @@
 .versionOne {
   .swiper-button-next,
   .swiper-button-prev {
-    top: 50%;
+    top: 30%;
   }
 }
 
@@ -22,7 +22,6 @@
   background: $white;
   position: absolute;
   border-radius: 50%;
-  top: 50%;
   width: 50px;
   height: 50px;
   z-index: 10;
@@ -103,6 +102,25 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
+}
+
+@media (max-width: $xl) {
+  .versionTwo {
+    .swiper-button-next,
+    .swiper-button-prev {
+      top: 30%;
+    }
+  }
+
+  .swiper-button-next,
+  .swiper-button-prev {
+    width: 35px;
+    height: 35px;
+  }
+  .swiper-button-next:after,
+  .swiper-button-prev:after {
+    font-size: 12px;
+  }
 }
 
 @media (max-width: $md) {

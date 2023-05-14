@@ -4,6 +4,9 @@
   border-radius: 15px;
   position: relative;
   background-image: url("../../assets/images/others/heroBg.png");
+  background-position: center left;
+  background-size: cover;
+  background-repeat: no-repeat;
 
   &__content {
     padding: 25px 0 25px 80px;
@@ -19,6 +22,26 @@
   p {
     font-size: 20px;
     color: $white;
+  }
+}
+
+@media (max-width: $xl) {
+  .hero {
+    &__content {
+      padding: 20px 0 20px 50px;
+    }
+
+    &__singerBg {
+      max-width: 50%;
+    }
+  }
+}
+
+@media (max-width: $lg) {
+  .hero {
+    &__content {
+      width: 60%;
+    }
   }
 }
 
