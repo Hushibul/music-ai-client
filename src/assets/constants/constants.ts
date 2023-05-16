@@ -359,23 +359,23 @@ export const Instruments: IMusics[] = [
     title: "Weeding",
   },
   {
-    id: 13,
+    id: 14,
     title: "Weeding",
   },
   {
-    id: 14,
+    id: 15,
     title: "8 bit",
   },
   {
-    id: 15,
+    id: 16,
     title: "Ambient",
   },
   {
-    id: 16,
+    id: 17,
     title: "Beats",
   },
   {
-    id: 17,
+    id: 18,
     title: "Chilihop",
   },
 ];

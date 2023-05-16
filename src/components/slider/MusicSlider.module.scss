@@ -26,6 +26,9 @@
 
 @media (max-width: $md) {
   .musicslider {
+    &__containerOne {
+      margin-bottom: 15px;
+    }
     &__titleOne {
       padding-bottom: 6px;
       margin-bottom: 12px;

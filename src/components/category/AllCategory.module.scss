@@ -1,18 +1,73 @@
 @import "../../assets/sass/variables";
 
 .allcategory {
+  margin-top: 60px;
   &__title {
     font-size: 20px;
     text-decoration: underline;
   }
 
   &__categories {
-    height: 560px;
+    max-height: 500px;
+
+    &_borderBottom {
+      height: 1px;
+      max-width: 50%;
+      background-color: $red;
+      margin-inline: auto;
+    }
+
+    li {
+      flex-basis: calc(1 / 7 * 100%);
+      max-width: calc(1 / 7 * 100%);
+    }
 
     &_heading {
       font-size: 18px;
       color: $black;
       font-weight: 900;
     }
+  }
+}
+
+@media (max-width: $xxl) {
+  .allcategory {
+    &__categories {
+      max-height: 700px;
+      li {
+        flex-basis: calc(1 / 6 * 100%);
+        max-width: calc(1 / 6 * 100%);
+      }
+    }
+  }
+}
+@media (max-width: $xl) {
+  .allcategory {
+    &__categories {
+      max-height: 700px;
+      li {
+        flex-basis: calc(1 / 5 * 100%);
+        max-width: calc(1 / 5 * 100%);
+      }
+    }
+  }
+}
+
+@media (max-width: $lg) {
+  .allcategory {
+    margin-top: 50px;
+    &__categories {
+      max-height: 900px;
+      li {
+        flex-basis: calc(1 / 4 * 100%);
+        max-width: calc(1 / 4 * 100%);
+      }
+    }
+  }
+}
+
+@media (max-width: $md) {
+  .allcategory {
+    margin-top: 20px;
   }
 }

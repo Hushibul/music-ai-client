@@ -23,3 +23,10 @@ body {
   font-family: "Adobe Clean", sans-serif;
   background-color: $hoveredColor;
 }
+
+.sideNavbar {
+  .active {
+    background-color: $hoveredColor;
+    border-right: 2px solid $red;
+  }
+}

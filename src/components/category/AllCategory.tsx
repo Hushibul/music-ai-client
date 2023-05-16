@@ -20,11 +20,13 @@ const AllCategory = () => {
   const [category, setCategory] = useState<ILink[]>(Moods);
   return (
     <div className={Styles.allcategory}>
-      <h3 className={Styles.allcategory__title}>All Category</h3>
+      <h3 className={`${Styles.allcategory__title} mb-3 mb-md-0`}>
+        All Category
+      </h3>
 
       {/* Medium to Large    */}
       <ul
-        className={`${Styles.allcategory__categories} d-none mt-5 list-unstyled d-md-flex flex-column flex-wrap`}
+        className={`${Styles.allcategory__categories} d-none mt-5 list-unstyled d-sm-flex flex-column flex-wrap`}
       >
         {/* Moods  */}
         <li className={`${Styles.allcategory__categories_heading} mb-4`}>
@@ -37,6 +39,8 @@ const AllCategory = () => {
             </Link>
           </li>
         ))}
+
+        <div className={Styles.allcategory__categories_borderBottom}></div>
 
         {/* Instruments  */}
         <li className={`${Styles.allcategory__categories_heading} mb-4`}>
@@ -115,7 +119,7 @@ const AllCategory = () => {
       </ul>
 
       {/* Mobile Devices  */}
-      <ul className="d-flex gap-2 d-md-none flex-wrap list-unstyled pb-3 border-bottom border-secondary">
+      <ul className="d-flex gap-2 d-sm-none flex-wrap list-unstyled pb-3 border-bottom border-secondary">
         <li
           onClick={() => setCategory(Moods)}
           className={`rounded-3 cursor-pointer border border-dark shadow text-small px-3 py-2 ${
@@ -167,7 +171,7 @@ const AllCategory = () => {
         </li>
       </ul>
 
-      <ul className="d-flex d-md-none flex-wrap gap-2 list-unstyled">
+      <ul className="d-flex d-sm-none flex-wrap gap-2 list-unstyled">
         {category.map((item: ILink) => (
           <li
             className="px-3 py-2 border border-secondary text-small rounded-3"

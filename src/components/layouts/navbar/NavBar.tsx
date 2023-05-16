@@ -32,10 +32,10 @@ const NavBar = () => {
 
       <div className="d-flex gap-3 align-items-center ms-md-auto me-3">
         <Link to={"#sign-in"}>
-          <button className="button-primary button-light">Sign In</button>
+          <button className="button-light">Sign In</button>
         </Link>
         <Link to={"#get-started"}>
-          <button className="button-primary button-red">Get Started</button>
+          <button className="button-red">Get Started</button>
         </Link>
       </div>
     </div>
