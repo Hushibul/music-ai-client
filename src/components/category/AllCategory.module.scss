@@ -1,14 +1,14 @@
 @import "../../assets/sass/variables";
 
 .allcategory {
-  margin-top: 60px;
+  margin-top: 4.375rem;
   &__title {
-    font-size: 20px;
+    font-size: 1.25rem;
     text-decoration: underline;
   }
 
   &__categories {
-    max-height: 500px;
+    max-height: 520px;
 
     &_borderBottom {
       height: 1px;
@@ -20,10 +20,11 @@
     li {
       flex-basis: calc(1 / 7 * 100%);
       max-width: calc(1 / 7 * 100%);
+      padding-right: 5rem;
     }
 
     &_heading {
-      font-size: 18px;
+      font-size: 1.125rem;
       color: $black;
       font-weight: 900;
     }
@@ -37,14 +38,18 @@
       li {
         flex-basis: calc(1 / 6 * 100%);
         max-width: calc(1 / 6 * 100%);
+        padding-right: 4rem;
       }
     }
   }
 }
+
 @media (max-width: $xl) {
   .allcategory {
     &__categories {
-      max-height: 700px;
+      max-height: 650px;
+      padding-right: 3.5rem;
+
       li {
         flex-basis: calc(1 / 5 * 100%);
         max-width: calc(1 / 5 * 100%);
@@ -58,6 +63,7 @@
     margin-top: 50px;
     &__categories {
       max-height: 900px;
+      padding-right: 0;
       li {
         flex-basis: calc(1 / 4 * 100%);
         max-width: calc(1 / 4 * 100%);

@@ -9,9 +9,11 @@ const Hero = () => {
   return (
     <div className={`${Styles.hero}`}>
       <div className={`${Styles.hero__content}`}>
-        <h1 className="title text-center text-lg-start">Music for Creators</h1>
+        <h1 className="title text-center text-lg-start">
+          Music <br /> for Creators
+        </h1>
 
-        <div className="d-flex gap-4 align-items-center justify-content-center justify-content-lg-start">
+        <div className="d-flex gap-3 gap-lg-4 gap-xl-5 align-items-center justify-content-center justify-content-lg-start">
           <div className="d-flex gap-3 align-items-center">
             <img src={MusicIcon} alt="Music Icon" />
             <p className="mt-3">2K</p>
@@ -27,7 +29,8 @@ const Hero = () => {
         </div>
 
         <p>
-          No copyright claims. Your favorite beatmakers. Unlimited Download.
+          No copyright claims. Your favorite beatmakers. <br /> Unlimited
+          Download.
         </p>
       </div>
 

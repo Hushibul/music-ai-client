@@ -23,7 +23,7 @@ const SideBar = () => {
       className={`${Styles.sidebar} sideNavbar d-none flex-column d-md-flex`}
     >
       <div>
-        <div>
+        <div className="mb-4">
           <h3
             className={`${Styles.sidebar__paddings} nav-heading text-uppercase d-block my-4`}
           >
@@ -33,7 +33,7 @@ const SideBar = () => {
           {menu.map((item: INav) => (
             <NavLink
               key={item.id}
-              className="d-flex align-items-center gap-3 ps-3 text-decoration-none py-2"
+              className="d-flex align-items-center nav-link gap-3 ps-3 text-decoration-none py-2 mb-2"
               to={item.path}
             >
               <img
@@ -46,7 +46,8 @@ const SideBar = () => {
           ))}
         </div>
 
-        <div>
+        <hr />
+        <div className="mt-4">
           <h3
             className={`${Styles.sidebar__paddings} nav-heading text-uppercase my-4`}
           >
@@ -55,7 +56,7 @@ const SideBar = () => {
           {quickAccess.map((item: INav) => (
             <NavLink
               key={item.id}
-              className="d-flex align-items-center nav-link gap-3 ps-3 text-decoration-none py-2"
+              className="d-flex align-items-center nav-link gap-3 ps-3 text-decoration-none py-2 mb-2"
               to={item.path}
             >
               <img
@@ -71,7 +72,7 @@ const SideBar = () => {
 
       <div className="mt-auto">
         <div
-          className={`${Styles.sidebar__social} ${Styles.sidebar__paddings} ms-2`}
+          className={`${Styles.sidebar__social} ${Styles.sidebar__paddings} ms-3`}
         >
           <a
             href="https://www.apple.com/app-store/"

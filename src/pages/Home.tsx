@@ -4,14 +4,22 @@ import Hero from "../components/hero/Hero";
 import MusicSlider from "../components/slider/MusicSlider";
 
 const Home = () => {
-  const shuffled = Musics.reduce(
+  const shuffledOne = Musics.reduce(
     ([a, b]) => (
       b.push(...a.splice((Math.random() * a.length) | 0, 1)), [a, b]
     ),
     [[...Musics], []]
   )[1];
+
+  const shuffledTwo = Musics.reduce(
+    ([a, b]) => (
+      b.push(...a.splice((Math.random() * a.length) | 0, 1)), [a, b]
+    ),
+    [[...Musics], []]
+  )[1];
+
   return (
-    <div>
+    <>
       <Hero />
 
       <MusicSlider
@@ -26,21 +34,58 @@ const Home = () => {
         spSmall={3}
         spMedium={4}
         spLarge={6}
-        title="Cinema"
+        title="Acoustic Music"
         list={Musics}
         type={2}
       />
+
+      <MusicSlider
+        spSmall={3}
+        spMedium={4}
+        spLarge={6}
+        title="Cinematic"
+        list={shuffledOne}
+        type={2}
+      />
+
       <MusicSlider
         spSmall={3}
         spMedium={4}
         spLarge={6}
         title="Ambient"
-        list={shuffled}
+        list={shuffledTwo}
+        type={2}
+      />
+
+      <MusicSlider
+        spSmall={3}
+        spMedium={4}
+        spLarge={6}
+        title="Acoustic Music"
+        list={Musics}
+        type={2}
+      />
+
+      <MusicSlider
+        spSmall={3}
+        spMedium={4}
+        spLarge={6}
+        title="Cinematic"
+        list={shuffledOne}
+        type={2}
+      />
+
+      <MusicSlider
+        spSmall={3}
+        spMedium={4}
+        spLarge={6}
+        title="Ambient"
+        list={shuffledTwo}
         type={2}
       />
 
       <AllCategory />
-    </div>
+    </>
   );
 };
 

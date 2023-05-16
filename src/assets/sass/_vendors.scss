@@ -2,7 +2,8 @@
 .versionOne {
   .swiper-button-next,
   .swiper-button-prev {
-    top: 30%;
+    top: 50%;
+    transform: translateY(-10%);
   }
 }
 

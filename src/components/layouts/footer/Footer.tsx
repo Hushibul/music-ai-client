@@ -23,140 +23,159 @@ interface IFooter {
 
 const Footer = () => {
   return (
-    <footer className={`${Styles.footer}`}>
-      <div className={`d-flex flex-column flex-sm-row ${Styles.footer__gap}`}>
-        <div className={Styles.footer__left}>
-          <p className="text-medium text-center px-5 px-sm-0 text-md-start">
-            Bensound is the best place to find royalty-free music that pops your
-            videos up!
+    <section className={`${Styles.footer}`}>
+      <div className={Styles.footer__wrapper}>
+        <div className={`d-flex flex-column flex-sm-row ${Styles.footer__gap}`}>
+          <div className={Styles.footer__left}>
+            <p className="text-medium text-center px-5 px-sm-0 text-md-start">
+              Bensound is the best place to find royalty-free music that pops
+              your videos up!
+            </p>
+
+            <div className="d-flex gap-3 gap-md-4 mb-3 mb-md-0 justify-content-center justify-content-md-start align-items-center">
+              <a href="twitter.com">
+                <img src={TwitterLogo} alt="Twiiter Logo" />
+              </a>
+              <a href="facebook.com">
+                <img src={FacebookLogo} alt="Facebook Logo" />
+              </a>
+              <a href="instagram.com">
+                <img src={InstagramLogo} alt="Instagram Logo" />
+              </a>
+            </div>
+          </div>
+          <div className={`${Styles.footer__right} row pb-3`}>
+            <div className="col-6 col-md-4 col-lg-3 col-xl-4 col-xxl-2">
+              <h4 className="nav-heading mb-3">Menu</h4>
+
+              <ul className="list-unstyled">
+                {footerMenu.map((item: IFooter) => (
+                  <li key={item.id}>
+                    <Link
+                      className="text-medium mb-3 text-decoration-none"
+                      to={item.path}
+                    >
+                      {item.title}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div className="col-6 col-md-4 col-lg-3 col-xl-4 col-xxl-2">
+              <h4 className="nav-heading mb-3">Besound</h4>
+
+              <ul className="list-unstyled">
+                {besound.map((item: IFooter) => (
+                  <li key={item.id}>
+                    <Link
+                      className="text-medium mb-3 text-decoration-none"
+                      to={item.path}
+                    >
+                      {item.title}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div className="col-6 col-md-4 col-lg-3 col-xl-4 col-xxl-2">
+              <h4 className="nav-heading mb-3">Info</h4>
+
+              <ul className="list-unstyled">
+                {info.map((item: IFooter) => (
+                  <li key={item.id}>
+                    <Link
+                      className="text-medium mb-3 text-decoration-none"
+                      to={item.path}
+                    >
+                      {item.title}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div className="col-6 col-md-4 col-lg-3 col-xl-4 col-xxl-2">
+              <h4 className="nav-heading mb-3">Communities</h4>
+
+              <ul className="list-unstyled">
+                {comunities.map((item: IFooter) => (
+                  <li key={item.id}>
+                    <Link
+                      className="text-medium mb-3 text-decoration-none"
+                      to={item.path}
+                    >
+                      {item.title}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div className="col-6 col-md-4 col-lg-3 col-xl-4 col-xxl-2">
+              <h4 className="nav-heading mb-3">Support</h4>
+
+              <ul className="list-unstyled">
+                {support.map((item: IFooter) => (
+                  <li key={item.id}>
+                    <Link
+                      className="text-medium mb-3 text-decoration-none"
+                      to={item.path}
+                    >
+                      {item.title}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div className="col-6 col-md-4 col-lg-3 col-xl-4 col-xxl-2">
+              <h4 className="nav-heading mb-3">Info</h4>
+
+              <ul className="list-unstyled">
+                {info.map((item: IFooter) => (
+                  <li key={item.id}>
+                    <Link
+                      className="text-medium mb-3 text-decoration-none"
+                      to={item.path}
+                    >
+                      {item.title}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <hr />
+        <div className="d-flex flex-column flex-md-row align-items-center justify-content-between pt-3 pb-2">
+          <p className="text-medium text-center text-md-start m-0">
+            Bensound’s Royalty Free Music - Copyright © 2012-2023
           </p>
 
-          <div className="d-flex gap-3 mb-3 mb-md-0 justify-content-center justify-content-md-start align-items-center">
-            <img src={TwitterLogo} alt="Twiiter Logo" />
-            <img src={FacebookLogo} alt="Facebook Logo" />
-            <img src={InstagramLogo} alt="Instagram Logo" />
-          </div>
-        </div>
-        <div className={`${Styles.footer__right} row pb-3`}>
-          <div className="col-6 col-md-4 col-lg-3 col-xl-4 col-xxl-2">
-            <h4 className="nav-heading mb-3">Menu</h4>
+          <div className="d-flex gap-2 gap-md-4 mt-3 mt-md-0 align-items-center flex-wrap justify-content-center">
+            <a
+              href="shopify.com"
+              className="text-medium fw-bold text-decoration-none"
+            >
+              @soptiyfy.com
+            </a>
 
-            <ul className="list-unstyled">
-              {footerMenu.map((item: IFooter) => (
-                <li key={item.id}>
-                  <Link
-                    className="text-medium mb-3 text-decoration-none"
-                    to={item.path}
-                  >
-                    {item.title}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-          <div className="col-6 col-md-4 col-lg-3 col-xl-4 col-xxl-2">
-            <h4 className="nav-heading mb-3">Besound</h4>
-
-            <ul className="list-unstyled">
-              {besound.map((item: IFooter) => (
-                <li key={item.id}>
-                  <Link
-                    className="text-medium mb-3 text-decoration-none"
-                    to={item.path}
-                  >
-                    {item.title}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-          <div className="col-6 col-md-4 col-lg-3 col-xl-4 col-xxl-2">
-            <h4 className="nav-heading mb-3">Info</h4>
-
-            <ul className="list-unstyled">
-              {info.map((item: IFooter) => (
-                <li key={item.id}>
-                  <Link
-                    className="text-medium mb-3 text-decoration-none"
-                    to={item.path}
-                  >
-                    {item.title}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-          <div className="col-6 col-md-4 col-lg-3 col-xl-4 col-xxl-2">
-            <h4 className="nav-heading mb-3">Communities</h4>
-
-            <ul className="list-unstyled">
-              {comunities.map((item: IFooter) => (
-                <li key={item.id}>
-                  <Link
-                    className="text-medium mb-3 text-decoration-none"
-                    to={item.path}
-                  >
-                    {item.title}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-          <div className="col-6 col-md-4 col-lg-3 col-xl-4 col-xxl-2">
-            <h4 className="nav-heading mb-3">Support</h4>
-
-            <ul className="list-unstyled">
-              {support.map((item: IFooter) => (
-                <li key={item.id}>
-                  <Link
-                    className="text-medium mb-3 text-decoration-none"
-                    to={item.path}
-                  >
-                    {item.title}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-          <div className="col-6 col-md-4 col-lg-3 col-xl-4 col-xxl-2">
-            <h4 className="nav-heading mb-3">Info</h4>
-
-            <ul className="list-unstyled">
-              {info.map((item: IFooter) => (
-                <li key={item.id}>
-                  <Link
-                    className="text-medium mb-3 text-decoration-none"
-                    to={item.path}
-                  >
-                    {item.title}
-                  </Link>
-                </li>
-              ))}
-            </ul>
+            <a
+              href="https://www.apple.com/app-store/"
+              className="d-flex align-items-center text-decoration-none gap-3"
+            >
+              <img src={AppleIcon} alt="Apple Icon" />
+              <span className="text-small ">Apple Store</span>
+            </a>
+            <a
+              href="google-play.comhttps://play.google.com/store/"
+              className="d-flex align-items-center text-decoration-none gap-3"
+            >
+              <img src={PlayStoreIcon} alt="Apple Icon" />
+              <span className="text-small ">Google Play</span>
+            </a>
           </div>
         </div>
       </div>
-
-      <hr />
-      <div className="d-flex flex-column flex-md-row align-items-center justify-content-between pb-2">
-        <p className="text-medium text-center text-md-start mt-3">
-          Bensound’s Royalty Free Music - Copyright © 2012-2023
-        </p>
-
-        <div className="d-flex gap-2 gap-md-4 align-items-center flex-wrap justify-content-center">
-          <p className="text-medium fw-bold mt-3">@soptiyfy.com</p>
-
-          <div className="d-flex align-items-center gap-3">
-            <img src={AppleIcon} alt="Apple Icon" />
-            <p className="text-small mt-3">Apple Store</p>
-          </div>
-          <div className="d-flex align-items-center gap-3">
-            <img src={PlayStoreIcon} alt="Apple Icon" />
-            <p className="text-small mt-3">Google Play</p>
-          </div>
-        </div>
-      </div>
-    </footer>
+    </section>
   );
 };
 

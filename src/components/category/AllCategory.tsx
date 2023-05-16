@@ -20,13 +20,13 @@ const AllCategory = () => {
   const [category, setCategory] = useState<ILink[]>(Moods);
   return (
     <div className={Styles.allcategory}>
-      <h3 className={`${Styles.allcategory__title} mb-3 mb-md-0`}>
-        All Category
+      <h3 className={`${Styles.allcategory__title} mb-4 mb-md-5`}>
+        All Categories
       </h3>
 
       {/* Medium to Large    */}
       <ul
-        className={`${Styles.allcategory__categories} d-none mt-5 list-unstyled d-sm-flex flex-column flex-wrap`}
+        className={`${Styles.allcategory__categories} d-none list-unstyled d-sm-flex flex-column flex-wrap`}
       >
         {/* Moods  */}
         <li className={`${Styles.allcategory__categories_heading} mb-4`}>

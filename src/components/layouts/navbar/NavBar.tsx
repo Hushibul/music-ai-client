@@ -17,20 +17,24 @@ const NavBar = () => {
       />
 
       <div
-        className={`${Styles.navbar__searchbar} shadow-sm d-flex align-items-center justify-content-between`}
+        className={`${Styles.navbar__searchbar} shadow-sm d-none d-md-flex align-items-center justify-content-between`}
       >
         <input
           value={searchInput}
           onChange={(e) => setSearchInput(e.target.value)}
-          className="px-4 py-1 d-none d-md-block"
-          type="text"
+          className="px-4 py-1"
+          type="search"
           placeholder="Artist, track or release"
         />
 
-        <img src={SearchIcon} alt="Search Icon" className="me-md-4" />
+        <img
+          src={SearchIcon}
+          alt="Search Icon"
+          className={Styles.navbar__searchbar_searchIcon}
+        />
       </div>
 
-      <div className="d-flex gap-3 align-items-center ms-md-auto me-3">
+      <div className="d-flex gap-3 align-items-center ms-auto me-3">
         <Link to={"#sign-in"}>
           <button className="button-light">Sign In</button>
         </Link>

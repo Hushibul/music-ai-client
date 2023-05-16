@@ -2,8 +2,11 @@
 
 .footer {
   background-color: $white;
-  padding: 48px 180px 20px 64px;
 
+  &__wrapper {
+    padding: 48px 70px 20px 70px;
+    max-width: 75.5%;
+  }
   &__gap {
     gap: 80px;
   }
@@ -17,7 +20,10 @@
 
 @media (max-width: $lg) {
   .footer {
-    padding: 48px 60px 20px 64px;
+    &__wrapper {
+      max-width: calc(100% - 236px);
+      padding: 48px 60px 20px 64px;
+    }
     &__gap {
       gap: 40px;
     }
@@ -26,7 +32,10 @@
 
 @media (max-width: $md) {
   .footer {
-    padding: 25px 20px 10px 20px;
+    &__wrapper {
+      padding: 25px 20px 10px 20px;
+      max-width: 100%;
+    }
     &__gap {
       gap: 20px;
     }

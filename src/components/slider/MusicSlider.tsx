@@ -21,6 +21,7 @@ interface ISlider {
 }
 
 import Styles from "./MusicSlider.module.scss";
+import { Link } from "react-router-dom";
 const MusicSlider = ({
   spLarge,
   spMedium,
@@ -31,12 +32,12 @@ const MusicSlider = ({
 }: ISlider) => {
   return (
     <div
-      className={`mt-4 ${type === 1 ? "versionOne" : "versionTwo"} ${
+      className={`${type === 1 ? "versionOne" : "versionTwo"} ${
         Styles.musicslider
       }`}
     >
       <div className="d-flex justify-content-between align-items-center">
-        <h5
+        <h3
           className={` ${
             type === 1
               ? Styles.musicslider__titleOne
@@ -44,7 +45,7 @@ const MusicSlider = ({
           }`}
         >
           {title}
-        </h5>
+        </h3>
         <p
           className={`text-medium fw-bold text-dark ${
             type === 1 ? "d-none" : "d-block"
@@ -54,42 +55,59 @@ const MusicSlider = ({
         </p>
       </div>
 
-      <Swiper
-        navigation={true}
-        breakpoints={{
-          320: {
-            slidesPerView: spSmall,
-            spaceBetween: 6,
-          },
-          768: {
-            slidesPerView: spMedium,
-            spaceBetween: 12,
-          },
-          992: {
-            slidesPerView: spLarge,
-            spaceBetween: 16,
-          },
-        }}
-        modules={[Navigation]}
+      <div
+        className={
+          type === 1
+            ? Styles.musicslider__containerOne
+            : Styles.musicslider__containerTwo
+        }
       >
-        {list.map((item: any) => (
-          <SwiperSlide key={item?.id}>
-            {type === 1 ? (
-              <div className={Styles.musicslider__containerOne}>
-                <SliderCardOne image={item?.bg} title={item?.title} />
-              </div>
-            ) : (
-              <div className={Styles.musicslider__containerTwo}>
-                <SliderCardTwo
-                  image={item?.image}
-                  title={item?.title}
-                  artist={item?.artist}
-                />
-              </div>
-            )}
-          </SwiperSlide>
-        ))}
-      </Swiper>
+        <Swiper
+          navigation={true}
+          breakpoints={{
+            320: {
+              slidesPerView: spSmall,
+              spaceBetween: 6,
+            },
+            768: {
+              spaceBetween: 12,
+            },
+            992: {
+              slidesPerView: spMedium,
+              spaceBetween: 16,
+            },
+            1200: {
+              slidesPerView: spLarge,
+              spaceBetween: 24,
+            },
+          }}
+          modules={[Navigation]}
+        >
+          {list.map((item: any) => (
+            <SwiperSlide key={item?.id}>
+              {type === 1 ? (
+                <Link
+                  className="text-decoration-none"
+                  to={`category/${item.id}`}
+                >
+                  <SliderCardOne image={item?.bg} title={item?.title} />
+                </Link>
+              ) : (
+                <Link
+                  className="text-decoration-none nav-link"
+                  to={`category/${item.id}`}
+                >
+                  <SliderCardTwo
+                    image={item?.image}
+                    title={item?.title}
+                    artist={item?.artist}
+                  />
+                </Link>
+              )}
+            </SwiperSlide>
+          ))}
+        </Swiper>
+      </div>
     </div>
   );
 };

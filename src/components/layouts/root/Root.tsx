@@ -1,8 +1,9 @@
 import Footer from "../footer/Footer";
-import Navbar from "../navbar/Navbar";
-import Sidebar from "../navbar/Sidebar";
+import Navbar from "../navbar/NavBar";
+import Sidebar from "../navbar/SideBar";
 import Styles from "./Root.module.scss";
 import { Outlet } from "react-router-dom";
+
 const Root = () => {
   return (
     <>
@@ -18,8 +19,11 @@ const Root = () => {
           <div className={Styles.root__children_paddings}>
             <Outlet />
           </div>
-          <Footer />
         </div>
+
+        <footer className={Styles.root__footer}>
+          <Footer />
+        </footer>
       </main>
     </>
   );

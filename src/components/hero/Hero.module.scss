@@ -1,7 +1,7 @@
 @import "../../assets/sass/_variables";
 
 .hero {
-  border-radius: 15px;
+  border-radius: 1rem;
   position: relative;
   background-image: url("../../assets/images/others/heroBg.png");
   background-position: center left;
@@ -9,18 +9,18 @@
   background-repeat: no-repeat;
 
   &__content {
-    padding: 25px 0 25px 80px;
+    padding: 1.625rem 0 1.625rem 5rem;
     width: 50%;
   }
 
   &__singerBg {
     position: absolute;
     bottom: 0;
-    right: -50px;
+    right: -3.125rem;
   }
 
   p {
-    font-size: 20px;
+    font-size: 1.25rem;
     color: $white;
   }
 }
@@ -28,7 +28,7 @@
 @media (max-width: $xl) {
   .hero {
     &__content {
-      padding: 20px 0 20px 50px;
+      padding: 1.25rem 0 1.25rem 3.125rem;
     }
 
     &__singerBg {
@@ -41,6 +41,7 @@
   .hero {
     &__content {
       width: 60%;
+      padding: 1.25rem 0 1.25rem 1.875rem;
     }
   }
 }
@@ -51,7 +52,7 @@
       margin: auto;
       width: 75%;
       text-align: center;
-      padding: 20px;
+      padding: 1.25rem;
     }
 
     &__singerBg {
@@ -66,7 +67,7 @@
       width: 100%;
     }
     p {
-      font-size: 16px;
+      font-size: 1rem;
     }
   }
 }

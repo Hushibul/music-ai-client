@@ -3,24 +3,35 @@
 .navbar {
   background-color: $white;
   position: fixed;
+  top: 0;
+  left: 0;
   z-index: 20;
-  padding: 15px;
+  padding: 1rem;
   width: 100%;
 
-  .navbar__brandLogo {
+  &__brandLogo {
     max-width: 100%;
     height: auto;
   }
 
   &__searchbar {
-    border-radius: 10px;
-    width: 380px;
-    margin-left: 80px;
+    position: relative;
+    border-radius: 0.625rem;
+    width: 23.75rem;
+    margin-left: 5rem;
     input {
       border: none;
+      width: calc(100% - 2.5rem);
       &:focus-within {
         outline: none;
       }
+    }
+
+    &_searchIcon {
+      position: absolute;
+      top: 50%;
+      right: 2rem;
+      transform: translateY(-50%);
     }
   }
 }
