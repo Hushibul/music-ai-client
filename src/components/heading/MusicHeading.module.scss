@@ -1,0 +1,26 @@
+@import "../../assets/sass/variables";
+
+.musicHeading {
+  &__artistImage {
+    width: 312px;
+    height: 312px;
+    border-radius: 25px;
+  }
+
+  &__desc {
+    &_title {
+      font-size: clamp(2rem, 1.7037rem + 1.4815vw, 3rem);
+      font-weight: 900;
+      color: $darkgray;
+    }
+  }
+}
+
+@media (max-width: $sm) {
+  .musicHeading {
+    &__artistImage {
+      width: 100%;
+      height: auto;
+    }
+  }
+}

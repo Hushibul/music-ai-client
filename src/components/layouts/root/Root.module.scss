@@ -9,8 +9,6 @@
 
   &__children {
     margin-top: 90px;
-    // width: calc(100% - 236px);
-    // background-color: rebeccapurple;
     max-width: 75.5%;
 
     &_paddings {
@@ -24,33 +22,7 @@
   }
 }
 
-// @media (max-width: 1700px) {
-//   .root {
-//     &__children {
-//       width: calc(100% - 236px);
-//       // background-color: yellow;
-//     }
-//   }
-// }
-
-// @media (max-width: $xxl) {
-//   .root {
-//     &__children {
-//       // width: calc(100% - 236px);
-//       background-color: blue;
-//     }
-//   }
-// }
-
 @media (max-width: $lg) {
-  .root {
-    &__children {
-      max-width: calc(100% - 236px);
-    }
-  }
-}
-
-@media (max-width: $md) {
   .root {
     aside {
       display: none;

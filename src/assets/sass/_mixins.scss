@@ -1,0 +1,14 @@
+@import "./variables";
+
+@mixin text-overflow {
+  white-space: nowrap;
+  max-width: 220px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+@media (max-width: $md) {
+  @mixin text-overflow {
+    max-width: 100px;
+  }
+}

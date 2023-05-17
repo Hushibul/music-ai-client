@@ -4,7 +4,7 @@
   background-color: $white;
 
   &__wrapper {
-    padding: 48px 70px 20px 70px;
+    padding: 48px 0 20px 70px;
     max-width: 75.5%;
   }
   &__gap {
@@ -21,8 +21,8 @@
 @media (max-width: $lg) {
   .footer {
     &__wrapper {
-      max-width: calc(100% - 236px);
-      padding: 48px 60px 20px 64px;
+      padding: 48px 0 20px 64px;
+      max-width: 100%;
     }
     &__gap {
       gap: 40px;

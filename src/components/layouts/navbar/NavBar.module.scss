@@ -27,6 +27,10 @@
       }
     }
 
+    input[type="search" i]::-webkit-search-cancel-button {
+      cursor: pointer;
+    }
+
     &_searchIcon {
       position: absolute;
       top: 50%;
