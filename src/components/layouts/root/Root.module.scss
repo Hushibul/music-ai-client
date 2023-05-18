@@ -1,15 +1,18 @@
 @import "../../../assets/sass/variables";
 .root {
   display: flex;
+  align-items: flex-start;
   flex-wrap: wrap;
 
   aside {
     flex: 0 0 236px;
+    max-width: 236px;
   }
 
   &__children {
     margin-top: 90px;
     max-width: 75.5%;
+    flex: 0 0 75.5%;
 
     &_paddings {
       padding: 40px 64px 0 64px;
@@ -22,6 +25,15 @@
   }
 }
 
+// @media (max-width: $xxl) {
+//   .root {
+//     &__children {
+//       max-width: calc(100% - 236px);
+//       flex: 0 0 calc(100% - 236px);
+//     }
+//   }
+// }
+
 @media (max-width: $lg) {
   .root {
     aside {
@@ -30,6 +42,7 @@
 
     &__children {
       max-width: 100%;
+      flex: 0 0 100%;
 
       &_paddings {
         padding: 0 5px 0 5px;

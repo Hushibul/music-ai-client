@@ -4,6 +4,8 @@ import MusicArtist from "../assets/images/others/artistFour.png";
 import AudioPlayer from "../components/player/AudioPlayer";
 import MusicCard from "../components/cards/MusicCard";
 
+import HorseAudio from "../assets/musics/horseAudio.mp3";
+
 const Category = () => {
   return (
     <>
@@ -23,6 +25,7 @@ const Category = () => {
         image={MusicArtist}
         duration="2:05"
         artist="Artist: Denis Pavlov, Pavlov Denis"
+        music={HorseAudio}
       />
     </>
   );
