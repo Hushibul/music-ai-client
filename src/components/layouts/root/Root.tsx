@@ -1,3 +1,4 @@
+import AudioPlayer from "../../player/AudioPlayer";
 import Footer from "../footer/Footer";
 import Navbar from "../navbar/NavBar";
 import Sidebar from "../navbar/SideBar";
@@ -25,6 +26,8 @@ const Root = () => {
           <Footer />
         </footer>
       </main>
+
+      <AudioPlayer />
     </>
   );
 };

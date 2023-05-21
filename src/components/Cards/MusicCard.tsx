@@ -67,7 +67,7 @@ const MusicCard = ({ title, artist, duration, image, music }: IMusicCard) => {
 
         <button className="d-none d-sm-flex align-items-center">
           <img src={CardIcon} alt="Add to Cart" />
-          Lincence
+          Li cence
         </button>
       </div>
 

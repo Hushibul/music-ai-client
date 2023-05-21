@@ -27,6 +27,9 @@
 
   &__desc {
     @include text-overflow;
+    p {
+      margin: 0;
+    }
   }
 
   &__duration {
