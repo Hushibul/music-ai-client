@@ -16,10 +16,9 @@ const Root = () => {
         <aside>
           <Sidebar />
         </aside>
+
         <div className={Styles.root__children}>
-          <div className={Styles.root__children_paddings}>
-            <Outlet />
-          </div>
+          <Outlet />
         </div>
 
         <footer className={Styles.root__footer}>

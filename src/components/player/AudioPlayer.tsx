@@ -1,7 +1,10 @@
-import PlayMusic from "../../assets/musics/Panama.mp3";
+import PlayMusic from "../../assets/musics/Four.mp3";
+
 import Styles from "./AudioPlayer.module.scss";
+
 import ArtistImage from "../../assets/images/others/artistFour.png";
-import PlayButton from "../../assets/images/icons/playerPause.svg";
+import PauseButton from "../../assets/images/icons/playerPause.svg";
+import PlayButton from "../../assets/images/icons/playAudio.svg";
 import PrevButton from "../../assets/images/icons/prev.svg";
 import NextButton from "../../assets/images/icons/next.svg";
 import VolumeButton from "../../assets/images/icons/volume.svg";
@@ -9,18 +12,27 @@ import FavoriteButton from "../../assets/images/icons/favorite.svg";
 import MenuIcon from "../../assets/images/icons/smallMenu.svg";
 import CartIcon from "../../assets/images/icons/cart.svg";
 import CrossButton from "../../assets/images/icons/cross.svg";
-import { useState, useRef, useEffect } from "react";
+
+import { useRef, useEffect, useContext } from "react";
+import { AudioContext } from "../../context/AudioContext";
 
 const AudioPlayer = () => {
-  const [isPlaying, setIsPlaying] = useState<boolean>(false);
-  const [isVisible, setIsVisible] = useState<boolean>(true);
-  const [duration, setDuration] = useState<number>(0);
-  const [currentTime, setCurrentTime] = useState<any>(0);
-  const [volume, setVolume] = useState<any>(0);
+  const {
+    isPlaying,
+    setIsPlaying,
+    isVisible,
+    setIsVisible,
+    duration,
+    setDuration,
+    currentTime,
+    setCurrentTime,
+    musicData,
+  } = useContext(AudioContext);
 
-  const audioPlayer = useRef<any>(new Audio());
+  const audioPlayer = useRef<HTMLAudioElement>(new Audio());
   const progressBar = useRef<any>(null);
-  const volumeBar = useRef<any>(null);
+
+  const MAX = 10;
 
   const togglePlayPause = () => {
     const prevValue = isPlaying;
@@ -33,19 +45,8 @@ const AudioPlayer = () => {
   };
 
   // useEffect(() => {
-  //   setDuration(audioPlayer.current.duration);
-  // }, []);
-
-  useEffect(() => {
-    if (audioPlayer?.current?.duration !== undefined) {
-      const seconds = Math.floor(audioPlayer?.current?.duration);
-      setDuration(seconds);
-    }
-  }, [audioPlayer.current?.duration]);
-
-  useEffect(() => {
-    whilePlaying();
-  }, [audioPlayer.current.currentTime]);
+  //   whilePlaying();
+  // }, [audioPlayer.current.currentTime]);
 
   const calculateTime = (secs: number) => {
     const minutes = Math.floor(secs / 60);
@@ -71,28 +72,23 @@ const AudioPlayer = () => {
     changePlayerCurrentTime();
   };
 
-  const changeVolume = () => {
-    setVolume(volumeBar?.current?.volume);
+  const handleVolume = (e: any) => {
+    const { value } = e.target;
+    const volume = Number(value) / MAX;
+    audioPlayer.current.volume = volume;
   };
-
-  const changeVolumeRange = () => {
-    audioPlayer.current.volume = volumeBar.current.value;
-    changeVolume();
-  };
-
-  // console.log(volumeBar.current.value, audioPlayer.current.volume);
 
   return (
     <div className={`${Styles.audioPlayer} ${isVisible ? "d-flex" : "d-none"}`}>
       <img
         className={Styles.audioPlayer__artistImage}
-        src={ArtistImage}
+        src={musicData.image}
         alt="Artist Image"
       />
 
       <div className={Styles.audioPlayer__desc}>
-        <h4 className="">Beyound Space</h4>
-        <p>By Luke Paul</p>
+        <h4 className="">{musicData.title}</h4>
+        <p>By {musicData.artist}</p>
       </div>
 
       <div className={"d-flex gap-3 align-items-center"}>
@@ -104,8 +100,8 @@ const AudioPlayer = () => {
         <img
           className="cursor-pointer"
           onClick={togglePlayPause}
-          src={PlayButton}
-          alt="To play the song"
+          src={isPlaying ? PauseButton : PlayButton}
+          alt="To play the PlayButton from song"
         />
         <img
           className="cursor-pointer"
@@ -123,10 +119,9 @@ const AudioPlayer = () => {
           value={currentTime}
           onChange={changeRange}
           ref={progressBar}
-          defaultValue={"0"}
           type="range"
         />
-        <p>{duration && !isNaN(duration) && calculateTime(duration)}</p>
+        <p>{calculateTime(duration)}</p>
       </div>
 
       <div
@@ -134,9 +129,9 @@ const AudioPlayer = () => {
       >
         <img src={VolumeButton} alt="Mute / Unmute" />
         <input
-          ref={volumeBar}
-          value={volume}
-          onChange={changeVolumeRange}
+          min={0}
+          max={MAX}
+          onChange={(e) => handleVolume(e)}
           type="range"
         />
       </div>
@@ -158,7 +153,12 @@ const AudioPlayer = () => {
         alt="Exit Player"
       />
 
-      <audio ref={audioPlayer} preload="metadata" src={PlayMusic}></audio>
+      <audio
+        ref={audioPlayer}
+        preload="metadata"
+        onLoadedMetadata={() => setDuration(audioPlayer.current.duration)}
+        src={musicData.music}
+      ></audio>
     </div>
   );
 };

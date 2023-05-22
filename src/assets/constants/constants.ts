@@ -33,6 +33,12 @@ import musicOne from "../images/others/musicOne.png";
 import musicTwo from "../images/others/musicTwo.png";
 import musicThree from "../images/others/musicThree.png";
 
+//Playable Musics
+import PlayMusicOne from "../musics/One.mp3";
+import PlayMusicTwo from "../musics/Two.mp3";
+import PlayMusicThree from "../musics/Three.mp3";
+import PlayMusicFour from "../musics/Four.mp3";
+
 interface INavMenu {
   id: number;
   image?: string;
@@ -1059,5 +1065,36 @@ export const audioPlayers: IPlayers[] = [
     artist: "Denis Pavlov",
     image: MuNine,
     duration: "2: 30",
+  },
+];
+
+export const MusicPlayers = [
+  {
+    id: 1,
+    title: "Bewond Space",
+    music: PlayMusicOne,
+    artist: "Shawn Pollock",
+    imgage: musicThree,
+  },
+  {
+    id: 2,
+    title: "Youth",
+    music: PlayMusicTwo,
+    artist: "Shawn Pollock",
+    imgage: musicOne,
+  },
+  {
+    id: 3,
+    title: "Ship",
+    music: PlayMusicThree,
+    artist: "Shawn Pollock",
+    imgage: musicThree,
+  },
+  {
+    id: 4,
+    title: "Panama",
+    music: PlayMusicFour,
+    artist: "Shawn Pollock",
+    imgage: musicOne,
   },
 ];

@@ -1,10 +1,10 @@
 import MusicHeading from "../components/heading/MusicHeading";
 
 import MusicArtist from "../assets/images/others/artistFour.png";
-import AudioPlayer from "../components/player/AudioPlayer";
 import MusicCard from "../components/cards/MusicCard";
 
-import HorseAudio from "../assets/musics/horseAudio.mp3";
+import { MusicPlayers } from "../assets/constants/constants";
+import { Fragment } from "react";
 
 const Category = () => {
   return (
@@ -20,13 +20,17 @@ const Category = () => {
 
       {/* <AudioPlayer /> */}
 
-      <MusicCard
-        title="Besound Space"
-        image={MusicArtist}
-        duration="2:05"
-        artist="Artist: Denis Pavlov, Pavlov Denis"
-        music={HorseAudio}
-      />
+      {MusicPlayers.map((item, index) => (
+        <Fragment key={item.id}>
+          <MusicCard
+            index={index}
+            title={item.title}
+            image={item.imgage}
+            artist={item.artist}
+            music={item.music}
+          />
+        </Fragment>
+      ))}
     </>
   );
 };

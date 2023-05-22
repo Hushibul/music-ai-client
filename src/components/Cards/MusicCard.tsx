@@ -6,19 +6,21 @@ import DownloadButton from "../../assets/images/icons/downloadGray.svg";
 import AddButton from "../../assets/images/icons/plusGray.svg";
 import CardIcon from "../../assets/images/icons/cartMusic.svg";
 
-import { useRef, useState } from "react";
+import { useContext, useRef, useState } from "react";
 import WaveForm from "../player/WaveForm";
+import { AudioContext } from "../../context/AudioContext";
 
 interface IMusicCard {
+  index: number;
   title: string;
   artist: string;
-  duration: string;
   image: string;
   music: any;
 }
 
-const MusicCard = ({ title, artist, duration, image, music }: IMusicCard) => {
-  const [isPlaying, setIsPlaying] = useState<boolean>(false);
+const MusicCard = ({ index, title, artist, image, music }: IMusicCard) => {
+  const { isPlaying, setIsPlaying, duration, setMusicData, setIsVisible } =
+    useContext(AudioContext);
 
   const audioPlayer = useRef<HTMLAudioElement | null>(new Audio());
 
@@ -30,6 +32,16 @@ const MusicCard = ({ title, artist, duration, image, music }: IMusicCard) => {
     } else {
       if (audioPlayer.current !== null) audioPlayer.current.pause();
     }
+    setMusicData({ title, artist, image, music });
+    setIsVisible(true);
+  };
+
+  const calculateTime = (secs: number) => {
+    const minutes = Math.floor(secs / 60);
+    const returnedMinutes = minutes < 10 ? `0${minutes}` : `${minutes}`;
+    const seconds = Math.floor(secs % 60);
+    const returnedSeconds = seconds < 10 ? `0${seconds}` : `${seconds}`;
+    return `${returnedMinutes}:${returnedSeconds}`;
   };
 
   return (
@@ -55,7 +67,7 @@ const MusicCard = ({ title, artist, duration, image, music }: IMusicCard) => {
       <WaveForm />
 
       <div className={`d-none d-xl-block ${Styles.musicCard__duration}`}>
-        <span>{duration}</span>
+        <span>{calculateTime(duration)}</span>
       </div>
 
       <div
@@ -67,11 +79,11 @@ const MusicCard = ({ title, artist, duration, image, music }: IMusicCard) => {
 
         <button className="d-none d-sm-flex align-items-center">
           <img src={CardIcon} alt="Add to Cart" />
-          Li cence
+          Licence
         </button>
       </div>
 
-      <audio ref={audioPlayer} src={music}></audio>
+      <audio onLoadedMetadata={duration} ref={audioPlayer} src={music}></audio>
     </div>
   );
 };

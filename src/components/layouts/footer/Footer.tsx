@@ -25,7 +25,9 @@ const Footer = () => {
   return (
     <section className={`${Styles.footer}`}>
       <div className={Styles.footer__wrapper}>
-        <div className={`d-flex flex-column flex-sm-row ${Styles.footer__gap}`}>
+        <div
+          className={`d-flex flex-column flex-sm-row ${Styles.footer__spacing}`}
+        >
           <div className={Styles.footer__left}>
             <p className="text-medium text-center px-5 px-sm-0 text-md-start">
               Bensound is the best place to find royalty-free music that pops
