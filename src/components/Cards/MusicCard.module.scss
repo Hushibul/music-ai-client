@@ -2,11 +2,15 @@
 @import "../../assets/sass/mixins";
 
 .musicCard {
-  background-color: $white;
+  background-color: transparent;
   padding: 1.125rem;
   border-radius: 57px;
   max-width: 100%;
   margin-bottom: 1rem;
+
+  &:hover {
+    background-color: $white;
+  }
 
   &__musicIcon {
     width: 5rem;
@@ -90,4 +94,8 @@
       }
     }
   }
+}
+
+.activeTrack {
+  background-color: $white;
 }

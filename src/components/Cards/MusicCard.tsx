@@ -1,4 +1,11 @@
+import { useContext, useRef, useState } from "react";
+import WaveForm from "../player/WaveForm";
+import { AudioContext } from "../../context/AudioContext";
+
+//== Styles
 import Styles from "./MusicCard.module.scss";
+
+//== Icons
 import PlayButton from "../../assets/images/icons/play.svg";
 import PauseButton from "../../assets/images/icons/pause.svg";
 import FavoriteButton from "../../assets/images/icons/favoriteGray.svg";
@@ -6,47 +13,44 @@ import DownloadButton from "../../assets/images/icons/downloadGray.svg";
 import AddButton from "../../assets/images/icons/plusGray.svg";
 import CardIcon from "../../assets/images/icons/cartMusic.svg";
 
-import { useContext, useRef, useState } from "react";
-import WaveForm from "../player/WaveForm";
-import { AudioContext } from "../../context/AudioContext";
-
-interface IMusicCard {
+type IMusicCard = {
   index: number;
   title: string;
   artist: string;
   image: string;
-  music: any;
-}
+  music: string;
+  activeIndex: number;
+  duration: string;
+  handleActiveTrack: (itemIndex: number) => void;
+};
 
-const MusicCard = ({ index, title, artist, image, music }: IMusicCard) => {
-  const { isPlaying, setIsPlaying, duration, setMusicData, setIsVisible } =
+const MusicCard = (props: IMusicCard) => {
+  const {
+    index,
+    title,
+    artist,
+    image,
+    music,
+    duration,
+    activeIndex,
+    handleActiveTrack,
+  } = props;
+  const { isPlaying, setIsPlaying, setMusicData, setIsVisible } =
     useContext(AudioContext);
-
-  const audioPlayer = useRef<HTMLAudioElement | null>(new Audio());
 
   const togglePlayPause = () => {
     const prevValue = isPlaying;
     setIsPlaying(!prevValue);
-    if (!prevValue) {
-      if (audioPlayer.current !== null) audioPlayer.current.play();
-    } else {
-      if (audioPlayer.current !== null) audioPlayer.current.pause();
-    }
-    setMusicData({ title, artist, image, music });
+    setMusicData({ title, image, artist, music });
     setIsVisible(true);
-  };
-
-  const calculateTime = (secs: number) => {
-    const minutes = Math.floor(secs / 60);
-    const returnedMinutes = minutes < 10 ? `0${minutes}` : `${minutes}`;
-    const seconds = Math.floor(secs % 60);
-    const returnedSeconds = seconds < 10 ? `0${seconds}` : `${seconds}`;
-    return `${returnedMinutes}:${returnedSeconds}`;
   };
 
   return (
     <div
-      className={`${Styles.musicCard} d-flex align-items-center justify-content-between`}
+      className={`${Styles.musicCard} ${
+        activeIndex === index && Styles.activeTrack
+      } d-flex align-items-center justify-content-between`}
+      onClick={() => handleActiveTrack(index)}
     >
       <div className={Styles.musicCard__musicIcon}>
         <img className="img-fluid" src={image} alt={title} />
@@ -59,7 +63,7 @@ const MusicCard = ({ index, title, artist, image, music }: IMusicCard) => {
         />
       </div>
 
-      <div className={`${Styles.musicCard__desc} `}>
+      <div className={`${Styles.musicCard__desc}`}>
         <h3 className="text-normal fw-bold text-dark">{title}</h3>
         <p className="text-medium">{artist}</p>
       </div>
@@ -67,7 +71,7 @@ const MusicCard = ({ index, title, artist, image, music }: IMusicCard) => {
       <WaveForm />
 
       <div className={`d-none d-xl-block ${Styles.musicCard__duration}`}>
-        <span>{calculateTime(duration)}</span>
+        <span>{duration}</span>
       </div>
 
       <div
@@ -82,8 +86,6 @@ const MusicCard = ({ index, title, artist, image, music }: IMusicCard) => {
           Licence
         </button>
       </div>
-
-      <audio onLoadedMetadata={duration} ref={audioPlayer} src={music}></audio>
     </div>
   );
 };

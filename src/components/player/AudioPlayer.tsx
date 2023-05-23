@@ -1,4 +1,4 @@
-import PlayMusic from "../../assets/musics/Four.mp3";
+// import PlayMusic from "../../assets/musics/Four.mp3";
 
 import Styles from "./AudioPlayer.module.scss";
 
@@ -38,9 +38,9 @@ const AudioPlayer = () => {
     const prevValue = isPlaying;
     setIsPlaying(!prevValue);
     if (!prevValue) {
-      if (audioPlayer.current !== null) audioPlayer.current.play();
+      audioPlayer.current.play();
     } else {
-      if (audioPlayer.current !== null) audioPlayer.current.pause();
+      audioPlayer.current.pause();
     }
   };
 
@@ -87,7 +87,7 @@ const AudioPlayer = () => {
       />
 
       <div className={Styles.audioPlayer__desc}>
-        <h4 className="">{musicData.title}</h4>
+        <h4>{musicData.title}</h4>
         <p>By {musicData.artist}</p>
       </div>
 
@@ -158,7 +158,7 @@ const AudioPlayer = () => {
         preload="metadata"
         onLoadedMetadata={() => setDuration(audioPlayer.current.duration)}
         src={musicData.music}
-      ></audio>
+      />
     </div>
   );
 };

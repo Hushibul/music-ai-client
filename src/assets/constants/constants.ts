@@ -1044,30 +1044,7 @@ export const support: INavMenu[] = [
   },
 ];
 
-export const audioPlayers: IPlayers[] = [
-  {
-    id: 1,
-    title: "Boundless Space",
-    artist: "Denis Pavlov",
-    image: musicOne,
-    duration: "2: 30",
-  },
-  {
-    id: 2,
-    title: "Fearless",
-    artist: "Jhon Walker",
-    image: MuFive,
-    duration: "2: 13",
-  },
-  {
-    id: 3,
-    title: "Flying With You",
-    artist: "Denis Pavlov",
-    image: MuNine,
-    duration: "2: 30",
-  },
-];
-
+//MY MUSICS
 export const MusicPlayers = [
   {
     id: 1,
@@ -1075,6 +1052,7 @@ export const MusicPlayers = [
     music: PlayMusicOne,
     artist: "Shawn Pollock",
     imgage: musicThree,
+    duration: "2:58",
   },
   {
     id: 2,
@@ -1082,6 +1060,7 @@ export const MusicPlayers = [
     music: PlayMusicTwo,
     artist: "Shawn Pollock",
     imgage: musicOne,
+    duration: "1:36",
   },
   {
     id: 3,
@@ -1089,6 +1068,7 @@ export const MusicPlayers = [
     music: PlayMusicThree,
     artist: "Shawn Pollock",
     imgage: musicThree,
+    duration: "2:20",
   },
   {
     id: 4,
@@ -1096,5 +1076,6 @@ export const MusicPlayers = [
     music: PlayMusicFour,
     artist: "Shawn Pollock",
     imgage: musicOne,
+    duration: "3:10",
   },
 ];
