@@ -6,7 +6,7 @@ import {
 } from "react-router-dom";
 import Root from "./components/layouts/root/Root";
 import Home from "./pages/Home";
-import Category from "./pages/Category";
+import Category from "./pages/category/Category";
 
 function App() {
   const router = createBrowserRouter(

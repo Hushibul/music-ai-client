@@ -82,12 +82,12 @@ const AudioPlayer = () => {
     <div className={`${Styles.audioPlayer} ${isVisible ? "d-flex" : "d-none"}`}>
       <img
         className={Styles.audioPlayer__artistImage}
-        src={musicData.image}
+        src={musicData.itemMiniThumbUrl}
         alt="Artist Image"
       />
 
       <div className={Styles.audioPlayer__desc}>
-        <h4>{musicData.title}</h4>
+        <h4>{musicData.itemTitle}</h4>
         <p>By {musicData.artist}</p>
       </div>
 
@@ -157,7 +157,7 @@ const AudioPlayer = () => {
         ref={audioPlayer}
         preload="metadata"
         onLoadedMetadata={() => setDuration(audioPlayer.current.duration)}
-        src={musicData.music}
+        src={musicData.itemUrl}
       />
     </div>
   );
