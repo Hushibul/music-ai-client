@@ -8,8 +8,8 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css/scrollbar";
 
-import SliderCardOne from "../cards/SliderCardOne";
-import SliderCardTwo from "../cards/SliderCardTwo";
+import SliderCardOne from "../Cards/SliderCardOne";
+import SliderCardTwo from "../Cards/SliderCardTwo";
 
 interface ISlider {
   spLarge: number;
@@ -89,6 +89,7 @@ const MusicSlider = ({
                 <Link
                   className="text-decoration-none"
                   to={`category/${item.id}`}
+                  state={{title: item?.title, catBg: item?.bg}}
                 >
                   <SliderCardOne image={item?.bg} title={item?.title} />
                 </Link>
