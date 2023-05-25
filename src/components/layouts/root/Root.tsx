@@ -25,8 +25,6 @@ const Root = () => {
           <Footer />
         </footer>
       </main>
-
-      <AudioPlayer />
     </>
   );
 };

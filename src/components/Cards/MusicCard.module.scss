@@ -7,6 +7,11 @@
   border-radius: 57px;
   transition: 300ms background-color linear;
 
+  button {
+    background-color: transparent;
+    border: none;
+  }
+
   &:not(:last-child) {
     margin-bottom: 1rem;
   }
@@ -41,6 +46,7 @@
 
   &__desc {
     @include text-overflow;
+    margin-left: 33px;
 
     p {
       margin: 0;
@@ -48,7 +54,7 @@
   }
 
   &__duration {
-    padding: 0.5rem 1.875rem;
+    padding: 9px 29px;
     border-radius: 20px;
     background-color: $lightText;
 
@@ -62,7 +68,7 @@
     // margin-left: 6.25rem;
     gap: 1rem;
 
-    button {
+    .licence {
       gap: 0.625rem;
       padding: 0.625rem 1.625rem;
       background-color: $darkgray;
@@ -72,15 +78,14 @@
     }
   }
 
-
-  &:hover, &.activeTrack {
+  &:hover,
+  &.activeTrack {
     background-color: $white;
     .musicIcon {
       .playButton {
         opacity: 1;
       }
     }
-
   }
 }
 
