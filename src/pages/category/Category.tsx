@@ -1,114 +1,91 @@
-import { useContext, useState, useRef } from "react";
+//== Import Libraries
+import {useContext, useState, useRef, Fragment, useEffect} from "react";
+import {useLocation} from "react-router-dom";
+
+//== Import Components
 import MusicHeading from "../../components/heading/MusicHeading";
-import MusicCard from "../../components/cards/MusicCard";
+import MusicCard from "../../components/Cards/MusicCard";
+import {catPlaylist} from "../../constant/catPlaylist";
+import {AudioContext} from "../../context/AudioContext";
+import AudioPlayer from "../../components/player/AudioPlayer";
 
 //== Styles
 import Styles from "./Category.module.scss";
 
-//== Icons
-import { catPlaylist } from "../../constant/catPlaylist";
-import { AudioContext } from "../../context/AudioContext";
-import { useLocation } from "react-router-dom";
-import AudioPlayer from "../../components/player/AudioPlayer";
-
 const Category = () => {
-  const { state } = useLocation();
-  const {
-    setIsVisible,
-    setMusicData,
-    isPlaying,
-    setIsPlaying,
-    setDuration,
-    setCurrentTime,
-    musicData,
-  } = useContext(AudioContext);
+    const {state} = useLocation();
+    const {
+        setIsVisible,
+        setMusicData,
+        isPlaying,
+        setIsPlaying,
+        setDuration,
+        setCurrentTime,
+        musicData,
+    } = useContext(AudioContext);
 
-  const [activeIndex, setActiveIndex] = useState<number>(0);
+    const [activeIndex, setActiveIndex] = useState<number | string>('');
+    const audioPlayer = useRef<HTMLAudioElement>();
+    const [catWrap, setCatWrap] = useState<boolean>(true);
 
-  const handleActiveTrack = (itemIndex: number): void => {
-    setActiveIndex(itemIndex);
-  };
+    const togglePlayPause = (): void => {
+        setIsPlaying(!isPlaying);
+    };
 
-  const audioPlayer = useRef<HTMLAudioElement>(new Audio());
-
-  const [catWrap, setCatWrap] = useState<boolean>(true);
-
-  const togglePlayPause = (itemData: any): void => {
-    setMusicData(itemData);
-    setCatWrap(false);
-    setIsVisible(true);
-
-    if (musicData !== itemData) {
-      setIsPlaying(true);
-      audioPlayer.current.play();
-      console.log("IF Executed!");
-      console.log(musicData);
-    } else {
-      const prevValue = isPlaying;
-
-      setIsPlaying(!prevValue);
-      if (!prevValue) {
-        audioPlayer.current.play();
-      } else {
-        audioPlayer.current.pause();
-      }
-      console.log("Else Executed!");
-      console.log(musicData);
+    const handleActiveIndex = (itemData: any, cardIndex: any) => {
+        setActiveIndex(cardIndex);
+        setMusicData(itemData);
+        setCatWrap(false);
+        setIsVisible(true);
     }
-  };
 
-  const toggleAudio = () => {
-    const prevValue = isPlaying;
-    setIsPlaying(!prevValue);
-    if (!prevValue) {
-      audioPlayer.current.play();
-    } else {
-      audioPlayer.current.pause();
-    }
-  };
+    useEffect(() => {
+        let mount: boolean = true;
+        if (mount) {
+            if (isPlaying) {
+                audioPlayer?.current?.play();
+            } else {
+                audioPlayer?.current?.pause();
+            }
+        }
+        return (): void => {
+            mount = false;
+        }
+    }, [isPlaying, activeIndex]);
 
-  return (
-    <>
-      {catWrap ? (
-        <MusicHeading title={state?.title} image={state?.catBg} />
-      ) : (
-        <MusicHeading
-          title={musicData?.itemTitle}
-          image={musicData.itemCoverUrl}
-          date={musicData?.date}
-          duration={musicData?.duration}
-          language={musicData?.language}
-          artist={musicData?.artist}
-          infoControls={true}
-        />
-      )}
+    return (
+        <>
+            {catWrap ? (
+                <MusicHeading title={state?.title} image={state?.catBg}/>
+            ) : (
+                <MusicHeading
+                    title={musicData?.itemTitle}
+                    image={musicData.itemCoverUrl}
+                    date={musicData?.date}
+                    duration={musicData?.duration}
+                    language={musicData?.language}
+                    artist={musicData?.artist}
+                    infoControls={true}
+                />
+            )}
 
-      <div className={Styles.categoryPlaylistWrap}>
-        {catPlaylist.map((item, index) => (
-          <MusicCard
-            key={item?.id}
-            {...item}
-            index={index}
-            activeIndex={activeIndex}
-            handleActiveTrack={handleActiveTrack}
-            togglePlayPause={() => togglePlayPause(item)}
-          />
-        ))}
-      </div>
-
-      <AudioPlayer audioPlayer={audioPlayer} togglePlayPause={toggleAudio} />
-
-      <audio
-        ref={audioPlayer}
-        preload="metadata"
-        onLoadedMetadata={() => setDuration(audioPlayer.current.duration)}
-        onTimeUpdate={(e: any): void => {
-          setCurrentTime(e.target.currentTime);
-        }}
-        src={musicData.itemUrl}
-      />
-    </>
-  );
+            <div className={Styles.categoryPlaylistWrap}>
+                {catPlaylist.map((item, index: number) => (
+                    <MusicCard
+                        key={item?.id}
+                        {...item}
+                        index={index}
+                        activeIndex={activeIndex}
+                        handleActiveIndex={() => handleActiveIndex(item, index)}
+                    />
+                ))}
+            </div>
+            <AudioPlayer
+                audioPlayer={audioPlayer}
+                togglePlayPause={togglePlayPause}
+            />
+        </>
+    );
 };
 
 export default Category;

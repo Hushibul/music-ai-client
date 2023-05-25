@@ -210,15 +210,17 @@ const AudioPlayer = ({ audioPlayer, togglePlayPause }: any) => {
         />
       </button>
 
-      {/* <audio
+      <audio
         ref={audioPlayer}
         preload="metadata"
         onLoadedMetadata={() => setDuration(audioPlayer.current.duration)}
+        onPlaying={() => setIsPlaying(true)}
+        onPause={() => setIsPlaying(false)}
         onTimeUpdate={(e: any): void => {
           setCurrentTime(e.target.currentTime);
         }}
         src={musicData.itemUrl}
-      /> */}
+      />
     </div>
   );
 };
