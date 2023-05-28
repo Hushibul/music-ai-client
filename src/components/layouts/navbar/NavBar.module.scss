@@ -82,7 +82,7 @@
 
 @media (max-width: $sm) {
   .navbar {
-    .navbar__brandLogo {
+    &__brandLogo {
       max-width: 25%;
     }
   }

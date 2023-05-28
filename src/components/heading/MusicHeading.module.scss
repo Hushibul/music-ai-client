@@ -8,6 +8,7 @@
   }
 
   &__desc {
+    align-self: center;
     &_title {
       font-size: clamp(2rem, 1.7037rem + 1.4815vw, 3rem);
       font-weight: 900;

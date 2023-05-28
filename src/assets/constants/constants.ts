@@ -1,43 +1,42 @@
 import HomeIcon from "../images/icons/Home.svg";
-import PricingIcon from "../images/icons/tag.svg";
-import HelpCenterIcon from "../images/icons/call.svg";
 import TrendingMusicIcon from "../images/icons/arrow.svg";
+import HelpCenterIcon from "../images/icons/call.svg";
 import PopularSongsIcon from "../images/icons/love.svg";
-import FeaturedIcon from "../images/icons/star.svg";
 import TopTrackIcon from "../images/icons/music.svg";
+import FeaturedIcon from "../images/icons/star.svg";
+import PricingIcon from "../images/icons/tag.svg";
 
 //Explore Music
-import TrendingMusicBg from "../images/others/exploreOne.png";
-import FeaturedMusicBg from "../images/others/exploreTwo.png";
-import PopularMusicBg from "../images/others/exploreThree.png";
 import BestMusicBg from "../images/others/exploreFour.png";
+import TrendingMusicBg from "../images/others/exploreOne.png";
+import PopularMusicBg from "../images/others/exploreThree.png";
+import FeaturedMusicBg from "../images/others/exploreTwo.png";
 
 //Music Array
-import MuOne from "../images/others/artistOne.png";
-import MuTwo from "../images/others/artistTwo.png";
-import MuThree from "../images/others/artistThree.png";
-import MuFour from "../images/others/artistFour.png";
-import MuFive from "../images/others/artistFive.png";
-import MuSix from "../images/others/artistSix.png";
-import MuSeven from "../images/others/artistSeven.png";
 import MuEight from "../images/others/artistEight.png";
-import MuNine from "../images/others/artistNine.png";
-import MuTen from "../images/others/artistTen.png";
 import MuEleven from "../images/others/artistEleven.png";
-import MuTwelve from "../images/others/artistTwelve.png";
-import MuThirteen from "../images/others/artistThirteen.png";
+import MuFive from "../images/others/artistFive.png";
+import MuFour from "../images/others/artistFour.png";
 import MuFourteen from "../images/others/artistFourteen.png";
+import MuNine from "../images/others/artistNine.png";
+import MuOne from "../images/others/artistOne.png";
+import MuSeven from "../images/others/artistSeven.png";
+import MuSix from "../images/others/artistSix.png";
+import MuTen from "../images/others/artistTen.png";
+import MuThirteen from "../images/others/artistThirteen.png";
+import MuThree from "../images/others/artistThree.png";
+import MuTwelve from "../images/others/artistTwelve.png";
+import MuTwo from "../images/others/artistTwo.png";
 
 //Music Player
 import musicOne from "../images/others/musicOne.png";
-import musicTwo from "../images/others/musicTwo.png";
 import musicThree from "../images/others/musicThree.png";
 
 //Playable Musics
-import PlayMusicOne from "../musics/One.mp3";
-import PlayMusicTwo from "../musics/Two.mp3";
-import PlayMusicThree from "../musics/Three.mp3";
 import PlayMusicFour from "../musics/Four.mp3";
+import PlayMusicOne from "../musics/One.mp3";
+import PlayMusicThree from "../musics/Three.mp3";
+import PlayMusicTwo from "../musics/Two.mp3";
 
 interface INavMenu {
   id: number;

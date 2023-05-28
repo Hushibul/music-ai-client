@@ -103,5 +103,8 @@
 
 // @media (max-width: $md) {
 // }
-// @media (max-width: $sm) {
-// }
+@media (max-width: $sm) {
+  .audioPlayer {
+    height: auto;
+  }
+}

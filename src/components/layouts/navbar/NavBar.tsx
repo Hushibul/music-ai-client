@@ -1,20 +1,18 @@
 import Styles from "./NavBar.module.scss";
 
-import BrandLogo from "../../../assets/images/logo/BrandLogo.svg";
 import SearchIcon from "../../../assets/images/icons/search.svg";
+import BrandLogo from "../../../assets/images/logo/BrandLogo.svg";
 
-import { Link } from "react-router-dom";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 const NavBar = () => {
   const [searchInput, setSearchInput] = useState<string>("");
   return (
     <div className={`${Styles.navbar} shadow-sm d-flex`}>
-      <img
-        className={Styles.navbar__brandLogo}
-        src={BrandLogo}
-        alt="Brand Logo"
-      />
+      <Link className={Styles.navbar__brandLogo} to={"/"}>
+        <img className="img-fluid" src={BrandLogo} alt="Brand Logo" />
+      </Link>
 
       <div
         className={`${Styles.navbar__searchbar} shadow-sm d-none d-md-flex align-items-center justify-content-between`}
