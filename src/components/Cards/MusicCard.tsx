@@ -37,6 +37,7 @@ const MusicCard = (props: IMusicCard) => {
     artist,
     itemTitle,
     activeIndex,
+    itemUrl,
     handleActiveIndex,
   } = props;
 
@@ -81,7 +82,9 @@ const MusicCard = (props: IMusicCard) => {
         </div>
       </div>
 
-      <WaveForm />
+      <div className={`${Styles.waveform} d-none d-xl-block`}>
+        <WaveForm audio={itemUrl} />
+      </div>
 
       <div className={`d-none d-xl-block ${Styles.musicCard__duration}`}>
         <span>{duration}</span>
@@ -97,12 +100,12 @@ const MusicCard = (props: IMusicCard) => {
           <img src={DownloadButton} alt="To dowonload this music" />
         </button>
 
-        <button>
+        <button className="d-none d-md-block">
           <img src={AddButton} alt="Add to playlist" />
         </button>
 
         <button
-          className={`d-none d-sm-flex align-items-center ${Styles.licence}`}
+          className={`d-none d-md-flex align-items-center ${Styles.licence}`}
         >
           <img src={CardIcon} alt="Add to Cart" />
           Licence

@@ -1,6 +1,14 @@
+@import "../../assets/sass/variables";
+
 .categoryPlaylistWrap {
-  background-color: #F2F2F2;
+  background-color: #f2f2f2;
   border-radius: 38px;
   padding: 23px 29px;
   margin: 35px 0;
+}
+
+@media (max-width: $md) {
+  .categoryPlaylistWrap {
+    padding: 20px 12px;
+  }
 }

@@ -106,6 +106,8 @@ const Category = () => {
         nextSong={nextSong}
         prevSong={prevSong}
       />
+
+      {/* <WaveForm /> */}
     </>
   );
 };

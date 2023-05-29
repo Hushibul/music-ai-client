@@ -108,12 +108,9 @@ const AudioPlayer = ({
   };
 
   return (
-    <div
-      className={`${Styles.audioPlayer} ${
-        isVisible ? "d-flex" : "d-none"
-      } flex-column flex-sm-row gap-1`}
-    >
-      <div className="d-flex gap-2 align-items-center">
+    <div className={`${Styles.audioPlayer} ${isVisible ? "d-flex" : "d-none"}`}>
+      {/* Music Content  */}
+      <div className="d-flex align-items-center">
         <img
           className={Styles.audioPlayer__artistImage}
           src={musicData.itemMiniThumbUrl}
@@ -126,19 +123,16 @@ const AudioPlayer = ({
         </div>
       </div>
 
-      <div className="d-flex w-100 justify-content-center justify-content-sm-start">
+      <div className="d-flex w-100">
         {/* Controll Player  */}
-        <div className={"d-flex gap-2 align-items-center"}>
-          <button onClick={prevSong}>
+        <div
+          className={`d-flex gap-2 align-items-center ${Styles.audioPlayer__controls}`}
+        >
+          <button className="d-none d-md-block" onClick={prevSong}>
             <img src={PrevButton} alt="To go to Previous song" />
           </button>
 
           <button onClick={togglePlayPause}>
-            {/* <img
-            src={isPlaying ? PauseButton : PlayButton}
-            alt="To play the PlayButton from song"
-          /> */}
-
             {isPlaying ? (
               <PauseCircle size={30} color="white" />
             ) : (
@@ -153,9 +147,9 @@ const AudioPlayer = ({
 
         {/* Song Progress  */}
         <div
-          className={`${Styles.audioPlayer__progressBar} d-none d-md-flex align-items-center`}
+          className={`${Styles.audioPlayer__progressBar} d-flex align-items-center`}
         >
-          <p>{calculateTime(currentTime)}</p>
+          <p className="d-none d-lg-block">{calculateTime(currentTime)}</p>
           <input
             className={"customSliderRange"}
             style={getTrackProgress()}
@@ -166,7 +160,9 @@ const AudioPlayer = ({
             ref={progressBar}
             type="range"
           />
-          <p>{calculateTime(duration - currentTime)}</p>
+          <p className="d-none d-lg-block">
+            {calculateTime(duration - currentTime)}
+          </p>
         </div>
 
         {/* Volume Controll  */}
@@ -174,7 +170,6 @@ const AudioPlayer = ({
           className={`${Styles.audioPlayer__volumeControll} d-none d-lg-flex align-items-center`}
         >
           <button onClick={muteVolume}>
-            {/* <img src={VolumeButton} alt="Mute / Unmute" /> */}
             {volume === 0 ? (
               <VolumeMute size={30} color="white" />
             ) : volume > 0 && volume <= 0.75 ? (
@@ -183,6 +178,7 @@ const AudioPlayer = ({
               <VolumeUp size={30} color="white" />
             )}
           </button>
+
           <input
             className={"customSliderRange"}
             style={getVolumeProgress()}
@@ -194,43 +190,34 @@ const AudioPlayer = ({
             type="range"
           />
         </div>
+      </div>
 
-        <div className="d-flex align-items-center gap-2">
-          <button>
-            <img
-              className="d-none d-md-block"
-              src={FavoriteButton}
-              alt="Add to Favorite"
-            />
-          </button>
-          <button>
-            <img src={MenuIcon} alt="Rest of the items" />
-          </button>
-          <button>
-            <img
-              className="d-none d-md-block"
-              src={CartIcon}
-              alt="Add to Cart"
-            />
-          </button>
-          <button onClick={exitPlayer}>
-            <img
-              className="mx-3 cursor-pointer"
-              src={CrossButton}
-              alt="Exit Player"
-            />
-          </button>
-        </div>
+      <div className={`d-flex align-items-center gap-1 gap-md-2 gap-xl-3`}>
+        <button className="d-none d-lg-block">
+          <img src={FavoriteButton} alt="Add to Favorite" />
+        </button>
+        <button className="d-none d-lg-block">
+          <img src={MenuIcon} alt="Rest of the items" />
+        </button>
+        <button>
+          <img src={CartIcon} alt="Add to Cart" />
+        </button>
+        <button onClick={exitPlayer}>
+          <img
+            className="mx-md-3 cursor-pointer"
+            src={CrossButton}
+            alt="Exit Player"
+          />
+        </button>
       </div>
       <audio
         ref={audioPlayer}
         preload="metadata"
         onLoadedMetadata={() => setDuration(audioPlayer.current.duration)}
-        // onPlaying={() => setIsPlaying(true)}
-        // onPause={() => setIsPlaying(false)}
         onTimeUpdate={(e: any): void => {
           setCurrentTime(e.target.currentTime);
         }}
+        onEnded={nextSong}
         src={musicData.itemUrl}
       />
     </div>

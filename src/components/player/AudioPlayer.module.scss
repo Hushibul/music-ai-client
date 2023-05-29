@@ -9,7 +9,7 @@
   height: 5.5rem;
   background-color: $playerBg;
   z-index: 1000;
-  padding: 1rem;
+  padding: 1.875rem 2.25rem;
   align-items: center;
 
   button {
@@ -18,18 +18,26 @@
   }
 
   &__desc {
-    margin: 0.875rem 5rem 0 1rem;
-    @include text-overflow;
+    margin: 0.875rem 5rem 0 1.5rem;
+
     h4 {
       font-size: 1rem;
       font-weight: 700;
       color: $white;
+
+      @include text-overflow;
     }
 
     p {
       font-size: 0.875rem;
       color: $borderLight;
+
+      @include text-overflow;
     }
+  }
+
+  &__controls {
+    position: relative;
   }
 
   &__artistImage {
@@ -41,7 +49,7 @@
   }
 
   &__progressBar {
-    width: 45%;
+    flex: 65%;
     margin: 0 2.25rem 0 5.5rem;
 
     p {
@@ -74,7 +82,7 @@
 
     input[type="range"] {
       appearance: none;
-      width: 100%;
+      max-width: 4rem;
       height: 4px;
       background-color: rgba($white, 0.3);
       background-image: linear-gradient($white, $white);
@@ -87,6 +95,20 @@
   }
 }
 
+@media (max-width: $xl) {
+  .audioPlayer {
+    &__desc {
+      margin: 0.875rem 1.5rem 0 1.5rem;
+    }
+    &__progressBar {
+      margin: 2rem;
+    }
+    &__volumeControll {
+      margin-right: 1rem;
+    }
+  }
+}
+
 @media (max-width: $lg) {
   .audioPlayer {
     &__desc {
@@ -94,17 +116,46 @@
     }
     &__progressBar {
       margin: 0 2.25rem 0 2.5rem;
+      input[type="range"] {
+        width: 100%;
+        margin-inline: 0.25rem;
+      }
     }
     &__volumeControll {
-      margin-right: 1.5rem;
+      margin-right: 0.5rem;
     }
   }
 }
 
-// @media (max-width: $md) {
-// }
+@media (max-width: $md) {
+  .audioPlayer {
+    padding: 1.875rem 1rem;
+    &__desc {
+      margin: 0.875rem 1rem 0 3rem;
+      max-width: 75px;
+    }
+    &__progressBar {
+      margin: 0 1rem 0 1rem;
+    }
+    &__controls {
+      position: absolute;
+      top: 50%;
+      left: 25px;
+      transform: translateY(-50%);
+    }
+  }
+}
 @media (max-width: $sm) {
   .audioPlayer {
     height: auto;
+    &__progressBar {
+      margin: 0 0.25rem 0 0.25rem;
+    }
+    &__desc {
+      margin: 0.875rem 0 0 2rem;
+    }
+    // &__progressBar {
+    //   margin: 0.5rem;
+    // }
   }
 }
