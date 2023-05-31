@@ -1,8 +1,12 @@
-import { useContext } from "react";
+//=== Styles
+import Styles from "./MusicHeading.module.scss";
+
+//=== Components
+import useAudio from "../../hooks/useAudio";
+
+//=== Icons
 import FavoriteIcon from "../../assets/images/icons/favorites.svg";
 import MenuIcon from "../../assets/images/icons/threeMenu.svg";
-import { AudioContext } from "../../context/AudioContext";
-import Styles from "./MusicHeading.module.scss";
 
 type IMusic = {
   title: string;
@@ -15,7 +19,7 @@ type IMusic = {
 };
 
 const MusicHeading = (props: IMusic) => {
-  const { setIsPlaying, setIsVisible } = useContext(AudioContext);
+  const { setIsPlaying, setIsVisible } = useAudio();
   const { title, date, language, duration, artist, image, infoControls } =
     props;
 
@@ -28,7 +32,7 @@ const MusicHeading = (props: IMusic) => {
       className={`${Styles.musicHeading} d-flex flex-column flex-sm-row mb-3 gap-3`}
     >
       <img
-        className={Styles.musicHeading__artistImage}
+        className={`${Styles.musicHeading__artistImage}`}
         src={image}
         alt={title}
       />

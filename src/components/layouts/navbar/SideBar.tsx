@@ -1,21 +1,26 @@
+//=== Libraries
 import { NavLink } from "react-router-dom";
+
+//=== Styles
 import Styles from "./NavBar.module.scss";
 
+//=== Icons
 import { menu, quickAccess } from "../../../assets/constants/constants";
 
+//=== Icons
 import AppleLogo from "../../../assets/images/icons/apple.svg";
-import PlayStoreLogo from "../../../assets/images/icons/google-play.svg";
 import FacebookLogo from "../../../assets/images/icons/facebook.svg";
-import TwitterLogo from "../../../assets/images/icons/twitter.svg";
+import PlayStoreLogo from "../../../assets/images/icons/google-play.svg";
 import InstagramLogo from "../../../assets/images/icons/instagram.svg";
+import TwitterLogo from "../../../assets/images/icons/twitter.svg";
 import VimeLogo from "../../../assets/images/icons/vime.svg";
 
-interface INav {
+type INav = {
   id: number;
   title: string;
   image?: string;
   path: string;
-}
+};
 
 const SideBar = () => {
   return (

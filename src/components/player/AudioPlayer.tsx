@@ -1,19 +1,21 @@
-import { useContext, useRef, useState } from "react";
+//==Libararies
+import { useRef, useState } from "react";
 
 //=== Styles
 import Styles from "./AudioPlayer.module.scss";
 
+//=== Components
+import useAudio from "../../hooks/useAudio";
+
 //===Icons
-// import PauseButton from "../../assets/images/icons/playerPause.svg";
-// import PlayButton from "../../assets/images/icons/playAudio.svg";
-import NextButton from "../../assets/images/icons/next.svg";
-import PrevButton from "../../assets/images/icons/prev.svg";
-// import VolumeButton from "../../assets/images/icons/volume.svg";
 import CartIcon from "../../assets/images/icons/cart.svg";
 import CrossButton from "../../assets/images/icons/cross.svg";
 import FavoriteButton from "../../assets/images/icons/favorite.svg";
+import NextButton from "../../assets/images/icons/next.svg";
+import PrevButton from "../../assets/images/icons/prev.svg";
 import MenuIcon from "../../assets/images/icons/smallMenu.svg";
 
+//=== Third Party Icons
 import {
   PauseCircle,
   PlayCircle,
@@ -21,8 +23,6 @@ import {
   VolumeMute,
   VolumeUp,
 } from "react-bootstrap-icons";
-
-import { AudioContext } from "../../context/AudioContext";
 
 type IMusicPlayer = {
   audioPlayer: any;
@@ -47,7 +47,8 @@ const AudioPlayer = ({
     currentTime,
     setCurrentTime,
     musicData,
-  } = useContext(AudioContext);
+    waveSurferRef,
+  } = useAudio();
 
   const progressBar = useRef<any | null>(null);
 
@@ -65,6 +66,9 @@ const AudioPlayer = ({
   const changePlayerCurrentTime = (): void => {
     if (progressBar?.current?.value !== null) {
       setCurrentTime(progressBar.current.value);
+      waveSurferRef.current.seekTo(
+        currentTime / waveSurferRef.current.getDuration()
+      );
     }
   };
 
@@ -85,7 +89,10 @@ const AudioPlayer = ({
     const { value } = e.target;
     audioPlayer.current.volume = Number(value) / MAX;
     setVolume(audioPlayer.current.volume);
+    waveSurferRef.current.setVolume(audioPlayer.current.volume);
   };
+
+  console.log(volume);
 
   const muteVolume = () => {
     const prevValue = mute;
@@ -93,9 +100,11 @@ const AudioPlayer = ({
     if (!prevValue) {
       audioPlayer.current.volume = 0;
       setVolume(0);
+      waveSurferRef.current.setVolume(0);
     } else {
       audioPlayer.current.volume = 1;
       setVolume(1);
+      waveSurferRef.current.setVolume(0);
     }
   };
 

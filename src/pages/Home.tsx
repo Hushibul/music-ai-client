@@ -1,4 +1,7 @@
+//==Constant variables
 import { Musics, exploreMusic } from "../assets/constants/constants";
+
+//== Components
 import AllCategory from "../components/category/AllCategory";
 import Hero from "../components/hero/Hero";
 import MusicSlider from "../components/slider/MusicSlider";
@@ -30,6 +33,7 @@ const Home = () => {
         list={exploreMusic}
         type={1}
       />
+
       <MusicSlider
         spSmall={3}
         spMedium={4}

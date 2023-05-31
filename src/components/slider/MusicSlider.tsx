@@ -1,27 +1,31 @@
+//=== Libraries
 import { Navigation } from "swiper";
-
 import { Swiper, SwiperSlide } from "swiper/react";
 
-// Import Swiper styles
+import { Link } from "react-router-dom";
+
+//== Swiper Library styles
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css/scrollbar";
 
-import SliderCardOne from "../Cards/SliderCardOne";
-import SliderCardTwo from "../Cards/SliderCardTwo";
+//== Styles
+import Styles from "./MusicSlider.module.scss";
 
-interface ISlider {
+//== Components
+import SliderCardOne from "../cards/SliderCardOne";
+import SliderCardTwo from "../cards/SliderCardTwo";
+
+type ISlider = {
   spLarge: number;
   spMedium: number;
   spSmall: number;
   type: number;
   title: string;
   list: any;
-}
+};
 
-import Styles from "./MusicSlider.module.scss";
-import { Link } from "react-router-dom";
 const MusicSlider = ({
   spLarge,
   spMedium,
@@ -88,15 +92,16 @@ const MusicSlider = ({
               {type === 1 ? (
                 <Link
                   className="text-decoration-none"
-                  to={`category/${item.id}`}
-                  state={{title: item?.title, catBg: item?.bg}}
+                  to={`category/${title}/${item.id}`}
+                  state={{ title: item?.title, catBg: item?.bg }}
                 >
                   <SliderCardOne image={item?.bg} title={item?.title} />
                 </Link>
               ) : (
                 <Link
                   className="text-decoration-none nav-link"
-                  to={`category/${item.id}`}
+                  to={`category/${item.title}/${item.id}`}
+                  state={{ title: item?.title, catBg: item?.image }}
                 >
                   <SliderCardTwo
                     image={item?.image}

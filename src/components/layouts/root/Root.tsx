@@ -1,9 +1,15 @@
-import AudioPlayer from "../../player/AudioPlayer";
+// import AudioPlayer from "../../player/AudioPlayer";
+
+//=== Libraries
+import { Outlet } from "react-router-dom";
+
+//=== Styles
+import Styles from "./Root.module.scss";
+
+//=== Components
 import Footer from "../footer/Footer";
 import Navbar from "../navbar/NavBar";
 import Sidebar from "../navbar/SideBar";
-import Styles from "./Root.module.scss";
-import { Outlet } from "react-router-dom";
 
 const Root = () => {
   return (

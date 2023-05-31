@@ -1,11 +1,16 @@
+//=== Libraries
 import {
+  Route,
+  RouterProvider,
   createBrowserRouter,
   createRoutesFromElements,
-  RouterProvider,
-  Route,
 } from "react-router-dom";
+
+//=== Components
 import Root from "./components/layouts/root/Root";
+import HelpCenter from "./pages/HelpCenter";
 import Home from "./pages/Home";
+import Pricing from "./pages/Pricing";
 import Category from "./pages/category/Category";
 
 function App() {
@@ -13,7 +18,9 @@ function App() {
     createRoutesFromElements(
       <Route path="/" element={<Root />}>
         <Route index element={<Home />} />
-        <Route path="/category/:id" element={<Category />} />
+        <Route path="/pricing" element={<Pricing />} />
+        <Route path="/help-center" element={<HelpCenter />} />
+        <Route path="/category/:type/:id" element={<Category />} />
       </Route>
     )
   );

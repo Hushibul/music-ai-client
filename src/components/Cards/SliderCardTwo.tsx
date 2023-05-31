@@ -1,10 +1,11 @@
+//=== Styles
 import Styles from "./SliderCard.module.scss";
 
-interface ICard {
+type ICard = {
   image: string;
   title: string;
   artist: string;
-}
+};
 
 const SliderCardTwo = ({ image, title, artist }: ICard) => {
   return (

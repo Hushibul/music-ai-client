@@ -1,19 +1,24 @@
-import Styles from "./Footer.module.scss";
-import {
-  footerMenu,
-  besound,
-  comunities,
-  support,
-  info,
-} from "../../../assets/constants/constants";
+//=== Libraries
 import { Link } from "react-router-dom";
 
-import TwitterLogo from "../../../assets/images/icons/twitter.svg";
+//=== Styles
+import Styles from "./Footer.module.scss";
+
+//=== Constant Variables
+import {
+  besound,
+  comunities,
+  footerMenu,
+  info,
+  support,
+} from "../../../assets/constants/constants";
+
+//=== Icons
+import AppleIcon from "../../../assets/images/icons/appleDark.svg";
 import FacebookLogo from "../../../assets/images/icons/facebook.svg";
 import InstagramLogo from "../../../assets/images/icons/instagram.svg";
-
-import AppleIcon from "../../../assets/images/icons/appleDark.svg";
 import PlayStoreIcon from "../../../assets/images/icons/playstoreDark.svg";
+import TwitterLogo from "../../../assets/images/icons/twitter.svg";
 
 interface IFooter {
   id: number;

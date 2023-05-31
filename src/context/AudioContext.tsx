@@ -1,4 +1,5 @@
-import { createContext, useState } from "react";
+//== Libraries
+import { createContext, useRef, useState } from "react";
 
 export const AudioContext = createContext<any>(null);
 
@@ -7,7 +8,11 @@ const AudioProvider = ({ children }: any) => {
   const [isPlaying, setIsPlaying] = useState<boolean>(false);
   const [isVisible, setIsVisible] = useState<boolean>(false);
   const [duration, setDuration] = useState<number>(0);
-  const [currentTime, setCurrentTime] = useState<any>(0);
+  const [currentTime, setCurrentTime] = useState<number>(0);
+
+  const audioPlayer = useRef<HTMLAudioElement>(new Audio());
+  const containerRef = useRef<any>();
+  const waveSurferRef = useRef<any>();
 
   const values = {
     isPlaying,
@@ -20,6 +25,9 @@ const AudioProvider = ({ children }: any) => {
     setCurrentTime,
     musicData,
     setMusicData,
+    containerRef,
+    waveSurferRef,
+    audioPlayer,
   };
 
   return (

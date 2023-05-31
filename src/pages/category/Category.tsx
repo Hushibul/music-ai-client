@@ -1,60 +1,75 @@
-//== Import Libraries
-import { useContext, useEffect, useRef, useState } from "react";
+//===  Libraries
+import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 
-//== Import Components
+//=== Components
 import MusicCard from "../../components/cards/MusicCard";
 import MusicHeading from "../../components/heading/MusicHeading";
 import AudioPlayer from "../../components/player/AudioPlayer";
 import { catPlaylist } from "../../constant/catPlaylist";
-import { AudioContext } from "../../context/AudioContext";
+import useAudio from "../../hooks/useAudio";
 
-//== Styles
+//=== Styles
 import Styles from "./Category.module.scss";
 
 const Category = () => {
   const { state } = useLocation();
-  const { setIsVisible, setMusicData, isPlaying, setIsPlaying, musicData } =
-    useContext(AudioContext);
+
+  const {
+    setIsVisible,
+    setMusicData,
+    isPlaying,
+    setIsPlaying,
+    musicData,
+    audioPlayer,
+    waveSurferRef,
+  } = useAudio();
 
   const [activeIndex, setActiveIndex] = useState<number>(0);
-  const audioPlayer = useRef<HTMLAudioElement>(new Audio());
   const [catWrap, setCatWrap] = useState<boolean>(true);
 
   const togglePlayPause = (): void => {
-    setIsPlaying(!isPlaying);
+    const prevState = !isPlaying;
+    setIsPlaying(prevState);
+
+    waveSurferRef.current.playPause();
   };
 
   const handleActiveIndex = (itemData: any, cardIndex: any) => {
+    const prevState = !isPlaying;
+    setIsPlaying(prevState);
+
     setActiveIndex(cardIndex);
     setMusicData(itemData);
     setCatWrap(false);
     setIsVisible(true);
+
+    waveSurferRef.current.playPause();
   };
 
   const nextSong = () => {
-    let prevValue: number;
+    let prevState: number;
     if (activeIndex < catPlaylist.length - 1) {
-      prevValue = activeIndex + 1;
-      setActiveIndex(prevValue);
-      setMusicData(catPlaylist[prevValue]);
+      prevState = activeIndex + 1;
+      setActiveIndex(prevState);
+      setMusicData(catPlaylist[prevState]);
     } else {
-      prevValue = 0;
-      setActiveIndex(prevValue);
-      setMusicData(catPlaylist[prevValue]);
+      prevState = 0;
+      setActiveIndex(prevState);
+      setMusicData(catPlaylist[prevState]);
     }
   };
 
   const prevSong = () => {
-    let prevValue: number;
+    let prevState: number;
     if (activeIndex > 0) {
-      prevValue = activeIndex - 1;
-      setActiveIndex(prevValue);
-      setMusicData(catPlaylist[prevValue]);
+      prevState = activeIndex - 1;
+      setActiveIndex(prevState);
+      setMusicData(catPlaylist[prevState]);
     } else {
-      prevValue = catPlaylist.length - 1;
-      setActiveIndex(prevValue);
-      setMusicData(catPlaylist[prevValue]);
+      prevState = catPlaylist.length - 1;
+      setActiveIndex(prevState);
+      setMusicData(catPlaylist[prevState]);
     }
   };
 
@@ -106,8 +121,6 @@ const Category = () => {
         nextSong={nextSong}
         prevSong={prevSong}
       />
-
-      {/* <WaveForm /> */}
     </>
   );
 };

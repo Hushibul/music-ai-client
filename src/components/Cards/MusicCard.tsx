@@ -1,11 +1,14 @@
-import { useContext, useEffect } from "react";
-import { AudioContext } from "../../context/AudioContext";
+//=== Libraries
+import { useEffect } from "react";
 import WaveForm from "../player/WaveForm";
 
-//== Styles
+//=== Components
+import useAudio from "../../hooks/useAudio";
+
+//=== Styles
 import Styles from "./MusicCard.module.scss";
 
-//== Icons
+//=== Icons
 import CardIcon from "../../assets/images/icons/cartMusic.svg";
 import DownloadButton from "../../assets/images/icons/downloadGray.svg";
 import FavoriteButton from "../../assets/images/icons/favoriteGray.svg";
@@ -41,7 +44,11 @@ const MusicCard = (props: IMusicCard) => {
     handleActiveIndex,
   } = props;
 
-  const { isPlaying, setIsPlaying, isVisible } = useContext(AudioContext);
+  const { isPlaying, setIsPlaying, isVisible, containerRef, waveSurferRef } =
+    useAudio();
+
+  // const containerRef = useRef<any>();
+  // const waveSurferRef = useRef<any>();
 
   useEffect(() => {
     if (activeIndex === index && isVisible === true) {
@@ -83,7 +90,13 @@ const MusicCard = (props: IMusicCard) => {
       </div>
 
       <div className={`${Styles.waveform} d-none d-xl-block`}>
-        <WaveForm audio={itemUrl} />
+        {index === activeIndex && (
+          <WaveForm
+            audio={itemUrl}
+            containerRef={containerRef}
+            waveSurferRef={waveSurferRef}
+          />
+        )}
       </div>
 
       <div className={`d-none d-xl-block ${Styles.musicCard__duration}`}>

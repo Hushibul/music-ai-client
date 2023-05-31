@@ -1,10 +1,13 @@
-import Styles from "./NavBar.module.scss";
-
-import SearchIcon from "../../../assets/images/icons/search.svg";
-import BrandLogo from "../../../assets/images/logo/BrandLogo.svg";
-
+//=== Libraries
 import { useState } from "react";
 import { Link } from "react-router-dom";
+
+//=== Styles
+import Styles from "./NavBar.module.scss";
+
+//=== Icons
+import SearchIcon from "../../../assets/images/icons/search.svg";
+import BrandLogo from "../../../assets/images/logo/BrandLogo.svg";
 
 const NavBar = () => {
   const [searchInput, setSearchInput] = useState<string>("");

@@ -1,11 +1,15 @@
-import React from "react";
+//=== Libraries
 import ReactDOM from "react-dom/client";
+
+//=== Components
 import App from "./App";
-import "./index.scss";
 import AudioProvider from "./context/AudioContext";
 
+//=== Styles
+import "./index.scss";
+
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
-    <AudioProvider>
-        <App />
-    </AudioProvider>
+  <AudioProvider>
+    <App />
+  </AudioProvider>
 );

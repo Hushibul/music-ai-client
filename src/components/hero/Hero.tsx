@@ -1,9 +1,11 @@
+//=== Styles
 import Styles from "./Hero.module.scss";
-import SingerImage from "../../assets/images/others/singerBg.png";
 
-import MusicIcon from "../../assets/images/icons/musics.svg";
+//=== Images
 import DownloadIcon from "../../assets/images/icons/downloads.svg";
+import MusicIcon from "../../assets/images/icons/musics.svg";
 import PeopleIcon from "../../assets/images/icons/peoples.svg";
+import SingerImage from "../../assets/images/others/singerBg.png";
 
 const Hero = () => {
   return (

@@ -1,32 +1,37 @@
-import { useEffect, useRef } from "react";
+import { useEffect } from "react";
 import WaveSurfer from "wavesurfer.js";
 
-//===Styles
-import Styles from "./WaveForm.module.scss";
-
-//===Musics
-
-const WaveForm = ({ audio }: any) => {
-  const containerRef = useRef<any>();
+const WaveForm = ({ audio, containerRef, waveSurferRef }: any) => {
   useEffect(() => {
     const waveSurfer = WaveSurfer.create({
       container: containerRef.current,
       barWidth: 2,
       barHeight: 3,
-      progressColor: "#7DCADD",
       barGap: 2,
-      responsive: true,
+      waveColor: "#707070",
+      progressColor: "#7DCADD",
       cursorColor: "#7DCADD",
-      cursorWidth: 3,
+      cursorWidth: 0,
+      height: 40,
+      fillParent: true,
+      interact: true,
+      responsive: true,
     });
     waveSurfer.load(audio);
-    waveSurfer.setHeight(40);
+
+    waveSurfer.on("ready", () => {
+      waveSurferRef.current = waveSurfer;
+    });
 
     return () => {
       waveSurfer.destroy();
     };
   }, [audio]);
-  return <div ref={containerRef} className={Styles.waveform} />;
+
+  // console.log(waveSurferRef.current.getCurrentTime());
+  // console.log(waveSurferRef.current.getVolume());
+
+  return <div ref={containerRef} />;
 };
 
 export default WaveForm;
