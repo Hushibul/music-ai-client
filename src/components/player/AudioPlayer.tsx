@@ -1,6 +1,5 @@
 //==Libararies
-import { useRef, useState } from "react";
-
+import { useEffect, useState } from "react";
 //=== Styles
 import Styles from "./AudioPlayer.module.scss";
 
@@ -25,35 +24,32 @@ import {
 } from "react-bootstrap-icons";
 
 type IMusicPlayer = {
-  audioPlayer: any;
   togglePlayPause: () => void;
   nextSong: () => void;
   prevSong: () => void;
 };
 
-const AudioPlayer = ({
-  audioPlayer,
-  togglePlayPause,
-  nextSong,
-  prevSong,
-}: IMusicPlayer) => {
+const AudioPlayer = ({ togglePlayPause, nextSong, prevSong }: IMusicPlayer) => {
+  //Global State
   const {
     isPlaying,
-    setIsPlaying,
     isVisible,
     setIsVisible,
     duration,
-    setDuration,
     currentTime,
-    setCurrentTime,
     musicData,
-    waveSurferRef,
+    waveSurferObj,
   } = useAudio();
 
-  const progressBar = useRef<any | null>(null);
+  //Local States
+  const [volume, setVolume] = useState<number>(1);
+  const [mute, setMute] = useState<boolean>(false);
 
-  const [volume, setVolume] = useState<number>(0.5);
-  const [mute, setMute] = useState<boolean>(true);
+  useEffect(() => {
+    if (waveSurferObj) {
+      waveSurferObj.setVolume(volume);
+    }
+  }, [volume, waveSurferObj]);
 
   const calculateTime = (secs: number): string => {
     const minutes: number = Math.floor(secs / 60);
@@ -63,56 +59,30 @@ const AudioPlayer = ({
     return `${returnedMinutes}:${returnedSeconds}`;
   };
 
-  const changePlayerCurrentTime = (): void => {
-    if (progressBar?.current?.value !== null) {
-      setCurrentTime(progressBar.current.value);
-      waveSurferRef.current.seekTo(
-        currentTime / waveSurferRef.current.getDuration()
-      );
-    }
+  const handleVolume = (e: any): void => {
+    setVolume(e.target.value);
   };
 
-  const changeRange = (): void => {
-    audioPlayer.current.currentTime = progressBar.current.value;
-    changePlayerCurrentTime();
+  const handleMute = (): void => {
+    setMute(!mute);
+
+    if (mute === true) {
+      setVolume(1);
+    } else {
+      setVolume(0);
+    }
   };
 
   const exitPlayer = (): void => {
-    setIsPlaying(false);
+    waveSurferObj.stop();
     setIsVisible(false);
-    audioPlayer.current.currentTime = 0;
   };
 
-  //== Volume Controls
-  const MAX: number = 10;
-  const handleVolume = (e: any) => {
-    const { value } = e.target;
-    audioPlayer.current.volume = Number(value) / MAX;
-    setVolume(audioPlayer.current.volume);
-    waveSurferRef.current.setVolume(audioPlayer.current.volume);
-  };
-
-  console.log(volume);
-
-  const muteVolume = () => {
-    const prevValue = mute;
-    setMute(!mute);
-    if (!prevValue) {
-      audioPlayer.current.volume = 0;
-      setVolume(0);
-      waveSurferRef.current.setVolume(0);
-    } else {
-      audioPlayer.current.volume = 1;
-      setVolume(1);
-      waveSurferRef.current.setVolume(0);
-    }
-  };
-
-  const getTrackProgress = () => {
+  const getTrackProgress = (): object => {
     return { backgroundSize: `${(currentTime * 100) / duration}% 100%` };
   };
 
-  const getVolumeProgress = () => {
+  const getVolumeProgress = (): object => {
     return { backgroundSize: `${volume * 100}% 100%` };
   };
 
@@ -165,8 +135,6 @@ const AudioPlayer = ({
             max={duration}
             value={currentTime}
             step={0.01}
-            onChange={changeRange}
-            ref={progressBar}
             type="range"
           />
           <p className="d-none d-lg-block">
@@ -178,7 +146,7 @@ const AudioPlayer = ({
         <div
           className={`${Styles.audioPlayer__volumeControll} d-none d-lg-flex align-items-center`}
         >
-          <button onClick={muteVolume}>
+          <button onClick={handleMute}>
             {volume === 0 ? (
               <VolumeMute size={30} color="white" />
             ) : volume > 0 && volume <= 0.75 ? (
@@ -192,10 +160,10 @@ const AudioPlayer = ({
             className={"customSliderRange"}
             style={getVolumeProgress()}
             min={0}
-            max={MAX}
+            max={1}
+            value={volume}
+            onChange={(e) => handleVolume(e)}
             step={0.1}
-            value={volume * 10}
-            onChange={(e: any) => handleVolume(e)}
             type="range"
           />
         </div>
@@ -219,16 +187,6 @@ const AudioPlayer = ({
           />
         </button>
       </div>
-      <audio
-        ref={audioPlayer}
-        preload="metadata"
-        onLoadedMetadata={() => setDuration(audioPlayer.current.duration)}
-        onTimeUpdate={(e: any): void => {
-          setCurrentTime(e.target.currentTime);
-        }}
-        onEnded={nextSong}
-        src={musicData.itemUrl}
-      />
     </div>
   );
 };

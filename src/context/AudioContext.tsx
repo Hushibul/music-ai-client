@@ -9,9 +9,8 @@ const AudioProvider = ({ children }: any) => {
   const [isVisible, setIsVisible] = useState<boolean>(false);
   const [duration, setDuration] = useState<number>(0);
   const [currentTime, setCurrentTime] = useState<number>(0);
+  const [waveSurferObj, setWaveSurferObj] = useState<any>();
 
-  const audioPlayer = useRef<HTMLAudioElement>(new Audio());
-  const containerRef = useRef<any>();
   const waveSurferRef = useRef<any>();
 
   const values = {
@@ -25,9 +24,9 @@ const AudioProvider = ({ children }: any) => {
     setCurrentTime,
     musicData,
     setMusicData,
-    containerRef,
     waveSurferRef,
-    audioPlayer,
+    waveSurferObj,
+    setWaveSurferObj,
   };
 
   return (

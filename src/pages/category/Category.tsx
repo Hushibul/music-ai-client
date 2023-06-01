@@ -21,33 +21,43 @@ const Category = () => {
     isPlaying,
     setIsPlaying,
     musicData,
-    audioPlayer,
-    waveSurferRef,
+    waveSurferObj,
   } = useAudio();
 
   const [activeIndex, setActiveIndex] = useState<number>(0);
   const [catWrap, setCatWrap] = useState<boolean>(true);
 
   const togglePlayPause = (): void => {
-    const prevState = !isPlaying;
-    setIsPlaying(prevState);
-
-    waveSurferRef.current.playPause();
+    setIsPlaying(!isPlaying);
+    waveSurferObj.playPause();
   };
 
-  const handleActiveIndex = (itemData: any, cardIndex: any) => {
-    const prevState = !isPlaying;
-    setIsPlaying(prevState);
-
+  const handleActiveIndex = (itemData: any, cardIndex: any): void => {
+    waveSurferObj.playPause();
+    setIsPlaying(!isPlaying);
     setActiveIndex(cardIndex);
     setMusicData(itemData);
     setCatWrap(false);
     setIsVisible(true);
-
-    waveSurferRef.current.playPause();
   };
 
-  const nextSong = () => {
+  useEffect(() => {
+    let mount: boolean = true;
+    if (mount) {
+      if (waveSurferObj) {
+        if (isPlaying) {
+          waveSurferObj.play();
+        } else {
+          waveSurferObj.pause();
+        }
+      }
+    }
+    return (): void => {
+      mount = false;
+    };
+  }, [isPlaying, activeIndex]);
+
+  const nextSong = (): void => {
     let prevState: number;
     if (activeIndex < catPlaylist.length - 1) {
       prevState = activeIndex + 1;
@@ -60,7 +70,7 @@ const Category = () => {
     }
   };
 
-  const prevSong = () => {
+  const prevSong = (): void => {
     let prevState: number;
     if (activeIndex > 0) {
       prevState = activeIndex - 1;
@@ -73,20 +83,6 @@ const Category = () => {
     }
   };
 
-  useEffect(() => {
-    let mount: boolean = true;
-    if (mount) {
-      if (isPlaying) {
-        audioPlayer?.current?.play();
-      } else {
-        audioPlayer?.current?.pause();
-      }
-    }
-    return (): void => {
-      mount = false;
-    };
-  }, [isPlaying, activeIndex]);
-
   return (
     <>
       {catWrap ? (
@@ -96,7 +92,6 @@ const Category = () => {
           title={musicData?.itemTitle}
           image={musicData.itemCoverUrl}
           date={musicData?.date}
-          duration={musicData?.duration}
           language={musicData?.language}
           artist={musicData?.artist}
           infoControls={true}
@@ -116,7 +111,6 @@ const Category = () => {
       </div>
 
       <AudioPlayer
-        audioPlayer={audioPlayer}
         togglePlayPause={togglePlayPause}
         nextSong={nextSong}
         prevSong={prevSong}

@@ -23,7 +23,6 @@ type IMusicCard = {
   itemMiniThumbUrl: string;
   date: string;
   language: string;
-  duration: string;
   artist: string;
   favorite: boolean;
   itemTitle: string;
@@ -36,7 +35,6 @@ const MusicCard = (props: IMusicCard) => {
   const {
     index,
     itemMiniThumbUrl,
-    duration,
     artist,
     itemTitle,
     activeIndex,
@@ -44,11 +42,15 @@ const MusicCard = (props: IMusicCard) => {
     handleActiveIndex,
   } = props;
 
-  const { isPlaying, setIsPlaying, isVisible, containerRef, waveSurferRef } =
-    useAudio();
+  const { isPlaying, setIsPlaying, isVisible, duration } = useAudio();
 
-  // const containerRef = useRef<any>();
-  // const waveSurferRef = useRef<any>();
+  const calculateTime = (secs: number): string => {
+    const minutes: number = Math.floor(secs / 60);
+    const returnedMinutes: string = minutes < 10 ? `0${minutes}` : `${minutes}`;
+    const seconds: number = Math.floor(secs % 60);
+    const returnedSeconds: string = seconds < 10 ? `0${seconds}` : `${seconds}`;
+    return `${returnedMinutes}:${returnedSeconds}`;
+  };
 
   useEffect(() => {
     if (activeIndex === index && isVisible === true) {
@@ -90,17 +92,11 @@ const MusicCard = (props: IMusicCard) => {
       </div>
 
       <div className={`${Styles.waveform} d-none d-xl-block`}>
-        {index === activeIndex && (
-          <WaveForm
-            audio={itemUrl}
-            containerRef={containerRef}
-            waveSurferRef={waveSurferRef}
-          />
-        )}
+        {index === activeIndex && <WaveForm audio={itemUrl} />}
       </div>
 
       <div className={`d-none d-xl-block ${Styles.musicCard__duration}`}>
-        <span>{duration}</span>
+        <span>{calculateTime(duration)}</span>
       </div>
 
       <div
