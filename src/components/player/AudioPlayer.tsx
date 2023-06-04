@@ -1,12 +1,13 @@
-//==Libararies
+//=== Libararies
 import { useEffect, useState } from "react";
+
 //=== Styles
 import Styles from "./AudioPlayer.module.scss";
 
 //=== Components
 import useAudio from "../../hooks/useAudio";
 
-//===Icons
+//=== Icons
 import CartIcon from "../../assets/images/icons/cart.svg";
 import CrossButton from "../../assets/images/icons/cross.svg";
 import FavoriteButton from "../../assets/images/icons/favorite.svg";
@@ -37,6 +38,7 @@ const AudioPlayer = ({ togglePlayPause, nextSong, prevSong }: IMusicPlayer) => {
     setIsVisible,
     duration,
     currentTime,
+    setCurrentTime,
     musicData,
     waveSurferObj,
   } = useAudio();
@@ -44,12 +46,6 @@ const AudioPlayer = ({ togglePlayPause, nextSong, prevSong }: IMusicPlayer) => {
   //Local States
   const [volume, setVolume] = useState<number>(1);
   const [mute, setMute] = useState<boolean>(false);
-
-  useEffect(() => {
-    if (waveSurferObj) {
-      waveSurferObj.setVolume(volume);
-    }
-  }, [volume, waveSurferObj]);
 
   const calculateTime = (secs: number): string => {
     const minutes: number = Math.floor(secs / 60);
@@ -59,10 +55,39 @@ const AudioPlayer = ({ togglePlayPause, nextSong, prevSong }: IMusicPlayer) => {
     return `${returnedMinutes}:${returnedSeconds}`;
   };
 
-  const handleVolume = (e: any): void => {
-    setVolume(e.target.value);
+  //Handling Volue with Progress Bar
+  const handleVolume = (e: React.ChangeEvent<HTMLInputElement>): void => {
+    const newVolume = parseFloat(e.target.value);
+    setVolume(newVolume);
   };
 
+  useEffect(() => {
+    if (waveSurferObj) {
+      waveSurferObj.setVolume(volume);
+    }
+  }, [volume, waveSurferObj]);
+
+  //Handling Music Progress with Progress Bar
+  const handleProgress = (e: React.ChangeEvent<HTMLInputElement>): void => {
+    const newCurrentTime = parseFloat(e.target.value);
+    setCurrentTime(newCurrentTime);
+  };
+
+  useEffect(() => {
+    if (waveSurferObj) {
+      const seekTime = currentTime / duration;
+
+      if (seekTime >= 0 && seekTime <= 1) {
+        waveSurferObj.seekTo(seekTime);
+      }
+
+      waveSurferObj.on("finish", () => {
+        nextSong();
+      });
+    }
+  }, [currentTime, waveSurferObj]);
+
+  //Handling Mute
   const handleMute = (): void => {
     setMute(!mute);
 
@@ -135,6 +160,7 @@ const AudioPlayer = ({ togglePlayPause, nextSong, prevSong }: IMusicPlayer) => {
             max={duration}
             value={currentTime}
             step={0.01}
+            onChange={(e) => handleProgress(e)}
             type="range"
           />
           <p className="d-none d-lg-block">

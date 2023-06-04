@@ -21,6 +21,7 @@ const Category = () => {
     isPlaying,
     setIsPlaying,
     musicData,
+    currentTime,
     waveSurferObj,
   } = useAudio();
 
@@ -55,7 +56,7 @@ const Category = () => {
     return (): void => {
       mount = false;
     };
-  }, [isPlaying, activeIndex]);
+  }, [isPlaying, activeIndex, currentTime]);
 
   const nextSong = (): void => {
     let prevState: number;
