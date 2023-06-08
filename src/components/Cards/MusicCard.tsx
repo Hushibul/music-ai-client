@@ -1,9 +1,8 @@
 //=== Libraries
-import { useEffect } from "react";
-import WaveForm from "../player/WaveForm";
 
 //=== Components
 import useAudio from "../../hooks/useAudio";
+import WaveForm from "../player/WaveForm";
 
 //=== Styles
 import Styles from "./MusicCard.module.scss";
@@ -25,6 +24,7 @@ type IMusicCard = {
   language: string;
   artist: string;
   favorite: boolean;
+  duration: string;
   itemTitle: string;
   itemUrl: string;
   activeIndex: number | string;
@@ -38,25 +38,18 @@ const MusicCard = (props: IMusicCard) => {
     artist,
     itemTitle,
     activeIndex,
+    duration,
     itemUrl,
     handleActiveIndex,
   } = props;
 
-  const { isPlaying, setIsPlaying, isVisible, duration } = useAudio();
+  const { isPlaying, setIsPlaying } = useAudio();
 
-  const calculateTime = (secs: number): string => {
-    const minutes: number = Math.floor(secs / 60);
-    const returnedMinutes: string = minutes < 10 ? `0${minutes}` : `${minutes}`;
-    const seconds: number = Math.floor(secs % 60);
-    const returnedSeconds: string = seconds < 10 ? `0${seconds}` : `${seconds}`;
-    return `${returnedMinutes}:${returnedSeconds}`;
+  const togglePlayPause = () => {
+    const prevState = !isPlaying;
+    setIsPlaying(prevState);
+    handleActiveIndex();
   };
-
-  useEffect(() => {
-    if (activeIndex === index && isVisible === true) {
-      setIsPlaying(true);
-    }
-  }, [activeIndex, index]);
 
   return (
     <div
@@ -67,21 +60,14 @@ const MusicCard = (props: IMusicCard) => {
       <div className="d-flex align-items-center">
         <div className={Styles.musicIcon}>
           <img className="img-fluid" src={itemMiniThumbUrl} alt={itemTitle} />
-          <button onClick={handleActiveIndex}>
-            {activeIndex === index ? (
-              <img
-                onClick={() => setIsPlaying(!isPlaying)}
-                className={Styles.playButton}
-                src={isPlaying ? PauseButton : PlayButton}
-                alt="Play/Pause Button"
-              />
-            ) : (
-              <img
-                className={Styles.playButton}
-                src={PlayButton}
-                alt="Play/Pause Button"
-              />
-            )}
+          <button onClick={togglePlayPause}>
+            <img
+              className={Styles.playButton}
+              src={
+                isPlaying && index === activeIndex ? PauseButton : PlayButton
+              }
+              alt="Play/Pause Button"
+            />
           </button>
         </div>
 
@@ -92,11 +78,17 @@ const MusicCard = (props: IMusicCard) => {
       </div>
 
       <div className={`${Styles.waveform} d-none d-xl-block`}>
-        {index === activeIndex && <WaveForm audio={itemUrl} />}
+        {/* <div ref={waveSurferRef} /> */}
+        <WaveForm
+          audio={itemUrl}
+          activeIndex={activeIndex}
+          index={index}
+          isPlaying={isPlaying}
+        />
       </div>
 
       <div className={`d-none d-xl-block ${Styles.musicCard__duration}`}>
-        <span>{calculateTime(duration)}</span>
+        <span>{duration}</span>
       </div>
 
       <div

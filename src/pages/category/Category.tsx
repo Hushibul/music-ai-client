@@ -5,11 +5,11 @@ import { useLocation } from "react-router-dom";
 //=== Components
 import MusicCard from "../../components/cards/MusicCard";
 import MusicHeading from "../../components/heading/MusicHeading";
-import AudioPlayer from "../../components/player/AudioPlayer";
 import { catPlaylist } from "../../constant/catPlaylist";
 import useAudio from "../../hooks/useAudio";
 
 //=== Styles
+import AudioPlayer from "../../components/player/AudioPlayer";
 import Styles from "./Category.module.scss";
 
 const Category = () => {
@@ -22,19 +22,24 @@ const Category = () => {
     setIsPlaying,
     musicData,
     currentTime,
-    waveSurferObj,
   } = useAudio();
 
   const [activeIndex, setActiveIndex] = useState<number>(0);
+  const [audio, setAudio] = useState<any | null>(null);
   const [catWrap, setCatWrap] = useState<boolean>(true);
 
   const togglePlayPause = (): void => {
     setIsPlaying(!isPlaying);
-    waveSurferObj.playPause();
+    // waveSurferObj.playPause();
   };
 
-  const handleActiveIndex = (itemData: any, cardIndex: any): void => {
-    waveSurferObj.playPause();
+  const handleActiveIndex = (
+    itemData: any,
+    cardIndex: any,
+    audio: any
+  ): void => {
+    // waveSurferObj.playPause();
+    setAudio(audio);
     setIsPlaying(!isPlaying);
     setActiveIndex(cardIndex);
     setMusicData(itemData);
@@ -45,13 +50,13 @@ const Category = () => {
   useEffect(() => {
     let mount: boolean = true;
     if (mount) {
-      if (waveSurferObj) {
-        if (isPlaying) {
-          waveSurferObj.play();
-        } else {
-          waveSurferObj.pause();
-        }
-      }
+      // if (waveSurferObj) {
+      //   if (isPlaying) {
+      //     waveSurferObj.play();
+      //   } else {
+      //     waveSurferObj.pause();
+      //   }
+      // }
     }
     return (): void => {
       mount = false;
@@ -106,12 +111,13 @@ const Category = () => {
             {...item}
             index={index}
             activeIndex={activeIndex}
-            handleActiveIndex={() => handleActiveIndex(item, index)}
+            handleActiveIndex={() => handleActiveIndex(item, index, audio)}
           />
         ))}
       </div>
 
       <AudioPlayer
+        audio={audio}
         togglePlayPause={togglePlayPause}
         nextSong={nextSong}
         prevSong={prevSong}
