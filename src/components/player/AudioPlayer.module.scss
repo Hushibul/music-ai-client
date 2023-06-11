@@ -50,7 +50,13 @@
 
   &__progressBar {
     flex: 65%;
+    max-width: 65%;
     margin: 0 2.25rem 0 5.5rem;
+
+    &_waveform {
+      width: 75%;
+      padding-inline: 30px;
+    }
 
     p {
       font-size: 18px;

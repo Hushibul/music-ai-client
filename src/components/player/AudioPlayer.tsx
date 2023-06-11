@@ -167,8 +167,10 @@ const AudioPlayer = ({
         >
           <p className="d-none d-lg-block">{calculateTime(currentTime)}</p>
 
-          <WaveForm audio={audio} />
-          <input
+          <div className={Styles.audioPlayer__progressBar_waveform}>
+            <WaveForm audio={audio} isPlaying={isPlaying} />
+          </div>
+          {/* <input
             className={"customSliderRange"}
             style={getTrackProgress()}
             max={duration}
@@ -176,7 +178,7 @@ const AudioPlayer = ({
             step={0.01}
             onChange={(e) => handleProgress(e)}
             type="range"
-          />
+          /> */}
 
           <p className="d-none d-lg-block">
             {calculateTime(duration - currentTime)}

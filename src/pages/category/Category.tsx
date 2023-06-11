@@ -47,6 +47,8 @@ const Category = () => {
     setIsVisible(true);
   };
 
+  console.log(audio);
+
   useEffect(() => {
     let mount: boolean = true;
     if (mount) {
@@ -111,10 +113,16 @@ const Category = () => {
             {...item}
             index={index}
             activeIndex={activeIndex}
-            handleActiveIndex={() => handleActiveIndex(item, index, audio)}
+            handleActiveIndex={() =>
+              handleActiveIndex(item, index, item.itemUrl)
+            }
           />
         ))}
       </div>
+
+      {/* <div>
+        <WaveForm audio={audio} />
+      </div> */}
 
       <AudioPlayer
         audio={audio}
