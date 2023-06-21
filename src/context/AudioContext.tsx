@@ -10,6 +10,7 @@ const AudioProvider = ({ children }: any) => {
   const [duration, setDuration] = useState<number>(0);
   const [currentTime, setCurrentTime] = useState<number>(0);
   const [volume, setVolume] = useState<number>(1);
+  const [newTime, setNewTime] = useState<any>(0);
 
   const values = {
     isPlaying,
@@ -24,6 +25,8 @@ const AudioProvider = ({ children }: any) => {
     setVolume,
     musicData,
     setMusicData,
+    newTime,
+    setNewTime,
   };
 
   return (

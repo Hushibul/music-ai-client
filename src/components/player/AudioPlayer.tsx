@@ -23,7 +23,6 @@ import {
   VolumeMute,
   VolumeUp,
 } from "react-bootstrap-icons";
-import WaveForm from "./WaveForm";
 
 type IMusicPlayer = {
   togglePlayPause: () => void;
@@ -50,6 +49,7 @@ const AudioPlayer = ({
     setVolume,
     setCurrentTime,
     musicData,
+    setNewTime,
   } = useAudio();
 
   //Local States
@@ -72,32 +72,8 @@ const AudioPlayer = ({
   //Handling Music Progress with Progress Bar
   const handleProgress = (e: React.ChangeEvent<HTMLInputElement>): void => {
     const newCurrentTime = parseFloat(e.target.value);
-    setCurrentTime(newCurrentTime);
+    setNewTime(newCurrentTime);
   };
-
-  // useEffect(() => {
-  //   if (waveSurferObj) {
-  //     const seekTime = currentTime / duration;
-
-  //     if (seekTime >= 0 && seekTime <= 1) {
-  //       waveSurferObj.seekTo(seekTime);
-  //     }
-
-  //     waveSurferObj.on("finish", () => {
-  //       nextSong();
-  //     });
-  //   }
-  // }, [currentTime, waveSurferObj]);
-
-  // useEffect(() => {
-  //   if (currentTime === duration && audio !== null) {
-  //     nextSong();
-  //     console.log(currentTime);
-
-  //     console.log(duration);
-  //     console.log("working");
-  //   }
-  // }, [audio, currentTime, duration]);
 
   //Handling Mute
   const handleMute = (): void => {
@@ -167,10 +143,10 @@ const AudioPlayer = ({
         >
           <p className="d-none d-lg-block">{calculateTime(currentTime)}</p>
 
-          <div className={Styles.audioPlayer__progressBar_waveform}>
+          {/* <div className={Styles.audioPlayer__progressBar_waveform}>
             <WaveForm audio={audio} isPlaying={isPlaying} />
-          </div>
-          {/* <input
+          </div> */}
+          <input
             className={"customSliderRange"}
             style={getTrackProgress()}
             max={duration}
@@ -178,7 +154,7 @@ const AudioPlayer = ({
             step={0.01}
             onChange={(e) => handleProgress(e)}
             type="range"
-          /> */}
+          />
 
           <p className="d-none d-lg-block">
             {calculateTime(duration - currentTime)}

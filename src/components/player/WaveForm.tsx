@@ -9,8 +9,9 @@ const WaveForm = ({ audio, isPlaying, index, activeIndex }: any) => {
   const [waveSurferObj, setWaveSurferObj] = useState<any>();
   const waveSurferRef = useRef<any>();
 
-  const { setDuration, setCurrentTime, volume } = useAudio();
+  const { setDuration, setCurrentTime, volume, duration, newTime } = useAudio();
 
+  //Creating the waveform for the audio
   useEffect(() => {
     if (waveSurferRef.current && !waveSurferObj) {
       setWaveSurferObj(
@@ -33,28 +34,26 @@ const WaveForm = ({ audio, isPlaying, index, activeIndex }: any) => {
     }
   }, [waveSurferRef, waveSurferObj]);
 
+  //Loading the audio url
   useEffect(() => {
     if (audio && waveSurferObj) {
       waveSurferObj.load(audio);
     }
   }, [audio, waveSurferObj]);
 
+  //Play and Pause of the audio
   useEffect(() => {
-    let mount: boolean = true;
-    if (mount) {
-      if (waveSurferObj) {
-        if (isPlaying && index === activeIndex) {
-          waveSurferObj.play();
-        } else {
-          waveSurferObj.pause();
-        }
+    console.log(index, activeIndex);
+    if (waveSurferObj) {
+      if (isPlaying && index === activeIndex) {
+        waveSurferObj.play();
+      } else {
+        waveSurferObj.pause();
       }
     }
-    return (): void => {
-      mount = false;
-    };
   }, [isPlaying, activeIndex]);
 
+  //Setting currentTime and duration
   useEffect(() => {
     if (waveSurferObj) {
       waveSurferObj.on("ready", () => {
@@ -72,17 +71,19 @@ const WaveForm = ({ audio, isPlaying, index, activeIndex }: any) => {
     }
   }, [waveSurferObj]);
 
+  //Setting currentTime on the progress bar
+  useEffect(() => {
+    if (waveSurferObj && index === activeIndex) {
+      waveSurferObj.seekTo(newTime / duration);
+    }
+  }, [newTime]);
+
+  //Setting Volume
   useEffect(() => {
     if (waveSurferObj) {
       waveSurferObj.setVolume(volume);
     }
   }, [volume, waveSurferObj]);
-
-  // useEffect(() => {
-  //   if (waveSurferObj) {
-  //     waveSurferObj.seekTo(currentTime / duration);
-  //   }
-  // }, [currentTime]);
 
   return <div ref={waveSurferRef} />;
 };

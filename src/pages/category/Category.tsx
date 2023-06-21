@@ -1,5 +1,5 @@
 //===  Libraries
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useLocation } from "react-router-dom";
 
 //=== Components
@@ -15,14 +15,8 @@ import Styles from "./Category.module.scss";
 const Category = () => {
   const { state } = useLocation();
 
-  const {
-    setIsVisible,
-    setMusicData,
-    isPlaying,
-    setIsPlaying,
-    musicData,
-    currentTime,
-  } = useAudio();
+  const { setIsVisible, setMusicData, isPlaying, setIsPlaying, musicData } =
+    useAudio();
 
   const [activeIndex, setActiveIndex] = useState<number>(0);
   const [audio, setAudio] = useState<any | null>(null);
@@ -30,7 +24,6 @@ const Category = () => {
 
   const togglePlayPause = (): void => {
     setIsPlaying(!isPlaying);
-    // waveSurferObj.playPause();
   };
 
   const handleActiveIndex = (
@@ -47,34 +40,16 @@ const Category = () => {
     setIsVisible(true);
   };
 
-  console.log(audio);
-
-  useEffect(() => {
-    let mount: boolean = true;
-    if (mount) {
-      // if (waveSurferObj) {
-      //   if (isPlaying) {
-      //     waveSurferObj.play();
-      //   } else {
-      //     waveSurferObj.pause();
-      //   }
-      // }
-    }
-    return (): void => {
-      mount = false;
-    };
-  }, [isPlaying, activeIndex, currentTime]);
-
   const nextSong = (): void => {
     let prevState: number;
     if (activeIndex < catPlaylist.length - 1) {
       prevState = activeIndex + 1;
       setActiveIndex(prevState);
-      setMusicData(catPlaylist[prevState]);
+      // setMusicData(catPlaylist[prevState]);
     } else {
       prevState = 0;
       setActiveIndex(prevState);
-      setMusicData(catPlaylist[prevState]);
+      // setMusicData(catPlaylist[prevState]);
     }
   };
 
@@ -119,10 +94,6 @@ const Category = () => {
           />
         ))}
       </div>
-
-      {/* <div>
-        <WaveForm audio={audio} />
-      </div> */}
 
       <AudioPlayer
         audio={audio}
