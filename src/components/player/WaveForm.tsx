@@ -43,7 +43,6 @@ const WaveForm = ({ audio, isPlaying, index, activeIndex }: any) => {
 
   //Play and Pause of the audio
   useEffect(() => {
-    console.log(index, activeIndex);
     if (waveSurferObj) {
       if (isPlaying && index === activeIndex) {
         waveSurferObj.play();

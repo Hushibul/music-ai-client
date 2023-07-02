@@ -135,7 +135,7 @@
 
 @media (max-width: $md) {
   .audioPlayer {
-    padding: 1.875rem 1rem;
+    padding: 1rem;
     &__desc {
       margin: 0.875rem 1rem 0 3rem;
       max-width: 75px;
@@ -160,8 +160,5 @@
     &__desc {
       margin: 0.875rem 0 0 2rem;
     }
-    // &__progressBar {
-    //   margin: 0.5rem;
-    // }
   }
 }
