@@ -1,5 +1,3 @@
-//=== Libraries
-
 //=== Components
 import useAudio from "../../hooks/useAudio";
 import WaveForm from "../player/WaveForm";
@@ -14,7 +12,6 @@ import FavoriteButton from "../../assets/images/icons/favoriteGray.svg";
 import PauseButton from "../../assets/images/icons/pause.svg";
 import PlayButton from "../../assets/images/icons/play.svg";
 import AddButton from "../../assets/images/icons/plusGray.svg";
-import {useEffect} from 'react';
 
 type IMusicCard = {
   index: number;
@@ -28,8 +25,9 @@ type IMusicCard = {
   duration: string;
   itemTitle: string;
   itemUrl: string;
-  activeIndex: number | string;
+  activeIndex: number;
   handleActiveIndex: () => void;
+  nextSong: () => void;
 };
 
 const MusicCard = (props: IMusicCard) => {
@@ -42,9 +40,10 @@ const MusicCard = (props: IMusicCard) => {
     duration,
     itemUrl,
     handleActiveIndex,
+    nextSong,
   } = props;
 
-  const { isPlaying , setIsPlaying} = useAudio();
+  const { isPlaying, setIsPlaying } = useAudio();
 
   return (
     <div
@@ -55,7 +54,13 @@ const MusicCard = (props: IMusicCard) => {
       <div className="d-flex align-items-center">
         <div className={Styles.musicIcon}>
           <img className="img-fluid" src={itemMiniThumbUrl} alt={itemTitle} />
-          <button onClick={(isPlaying && index === activeIndex) ? () => setIsPlaying(!isPlaying) : handleActiveIndex}>
+          <button
+            onClick={
+              isPlaying && index === activeIndex
+                ? () => setIsPlaying(!isPlaying)
+                : handleActiveIndex
+            }
+          >
             <img
               className={Styles.playButton}
               src={
@@ -73,12 +78,12 @@ const MusicCard = (props: IMusicCard) => {
       </div>
 
       <div className={`${Styles.waveform} d-none d-xl-block`}>
-        {/* <div ref={waveSurferRef} /> */}
         <WaveForm
           audio={itemUrl}
           activeIndex={activeIndex}
           index={index}
           isPlaying={isPlaying}
+          nextSong={nextSong}
         />
       </div>
 

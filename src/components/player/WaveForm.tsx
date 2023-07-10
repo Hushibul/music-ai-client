@@ -5,11 +5,18 @@ import wavesurfer from "wavesurfer.js";
 //=== Components
 import useAudio from "../../hooks/useAudio";
 
-const WaveForm = ({ audio, isPlaying, index, activeIndex }: any) => {
+const WaveForm = ({ audio, isPlaying, index, activeIndex, nextSong }: any) => {
   const [waveSurferObj, setWaveSurferObj] = useState<any>();
   const waveSurferRef = useRef<any>();
 
-  const { setDuration, setCurrentTime, volume, duration, newTime } = useAudio();
+  const {
+    setDuration,
+    setCurrentTime,
+    volume,
+    duration,
+    newTime,
+    setIsPlaying,
+  } = useAudio();
 
   //Creating the waveform for the audio
   useEffect(() => {
@@ -52,6 +59,13 @@ const WaveForm = ({ audio, isPlaying, index, activeIndex }: any) => {
     }
   }, [isPlaying, activeIndex]);
 
+  //Setting Time to zero on Song change
+  useEffect(() => {
+    if (waveSurferObj) {
+      waveSurferObj.seekTo(0);
+    }
+  }, [activeIndex]);
+
   //Setting currentTime and duration
   useEffect(() => {
     if (waveSurferObj) {
@@ -61,6 +75,17 @@ const WaveForm = ({ audio, isPlaying, index, activeIndex }: any) => {
       });
       waveSurferObj.on("audioprocess", () => {
         setCurrentTime(waveSurferObj.getCurrentTime());
+      });
+
+      // waveSurferObj.on("interaction", () => {
+      //   if (index === activeIndex && !isPlaying) {
+      //     setIsPlaying(true);
+      //   }
+      // });
+
+      waveSurferObj.on("finish", () => {
+        nextSong();
+        console.log("Song Finished");
       });
 
       return () => {

@@ -47,7 +47,6 @@ const AudioPlayer = ({
     currentTime,
     volume,
     setVolume,
-    setCurrentTime,
     musicData,
     setNewTime,
   } = useAudio();
@@ -71,8 +70,12 @@ const AudioPlayer = ({
 
   //Handling Music Progress with Progress Bar
   const handleProgress = (e: React.ChangeEvent<HTMLInputElement>): void => {
-    const newCurrentTime = parseFloat(e.target.value);
-    setNewTime(newCurrentTime);
+    if (isPlaying) {
+      const newCurrentTime = parseFloat(e.target.value);
+      setNewTime(newCurrentTime);
+    } else {
+      setIsPlaying(true);
+    }
   };
 
   //Handling Mute

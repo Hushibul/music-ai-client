@@ -1,9 +1,9 @@
 //===  Libraries
-import {useEffect, useState} from "react";
+import { useState } from "react";
 import { useLocation } from "react-router-dom";
 
 //=== Components
-import MusicCard from "../../components/Cards/MusicCard";
+import MusicCard from "../../components/cards/MusicCard";
 import MusicHeading from "../../components/heading/MusicHeading";
 import { catPlaylist } from "../../constant/catPlaylist";
 import useAudio from "../../hooks/useAudio";
@@ -27,7 +27,6 @@ const Category = () => {
     cardIndex: any,
     audio: any
   ): void => {
-    // waveSurferObj.playPause();
     setAudio(audio);
     setIsPlaying(true);
     setActiveIndex(cardIndex);
@@ -36,20 +35,21 @@ const Category = () => {
     setIsVisible(true);
   };
 
-
   const nextSong = (): void => {
     let prevState: number;
     if (activeIndex < catPlaylist.length - 1) {
       prevState = activeIndex + 1;
       setActiveIndex(prevState);
-      // setMusicData(catPlaylist[prevState]);
+      setMusicData(catPlaylist[prevState]);
     } else {
       prevState = 0;
       setActiveIndex(prevState);
-      // setMusicData(catPlaylist[prevState]);
+      setMusicData(catPlaylist[prevState]);
+    }
+    if (!isPlaying) {
+      setIsPlaying(true);
     }
   };
-
 
   const prevSong = (): void => {
     let prevState: number;
@@ -61,6 +61,9 @@ const Category = () => {
       prevState = catPlaylist.length - 1;
       setActiveIndex(prevState);
       setMusicData(catPlaylist[prevState]);
+    }
+    if (!isPlaying) {
+      setIsPlaying(true);
     }
   };
 
@@ -86,7 +89,10 @@ const Category = () => {
             {...item}
             index={index}
             activeIndex={activeIndex}
-            handleActiveIndex={() => handleActiveIndex(item, index, item.itemUrl)}
+            handleActiveIndex={() =>
+              handleActiveIndex(item, index, item.itemUrl)
+            }
+            nextSong={nextSong}
           />
         ))}
       </div>
