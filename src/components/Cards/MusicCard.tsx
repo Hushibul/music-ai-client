@@ -14,6 +14,7 @@ import FavoriteButton from "../../assets/images/icons/favoriteGray.svg";
 import PauseButton from "../../assets/images/icons/pause.svg";
 import PlayButton from "../../assets/images/icons/play.svg";
 import AddButton from "../../assets/images/icons/plusGray.svg";
+import {useEffect} from 'react';
 
 type IMusicCard = {
   index: number;
@@ -43,13 +44,7 @@ const MusicCard = (props: IMusicCard) => {
     handleActiveIndex,
   } = props;
 
-  const { isPlaying, setIsPlaying } = useAudio();
-
-  const togglePlayPause = () => {
-    const prevState = !isPlaying;
-    setIsPlaying(prevState);
-    handleActiveIndex();
-  };
+  const { isPlaying , setIsPlaying} = useAudio();
 
   return (
     <div
@@ -60,7 +55,7 @@ const MusicCard = (props: IMusicCard) => {
       <div className="d-flex align-items-center">
         <div className={Styles.musicIcon}>
           <img className="img-fluid" src={itemMiniThumbUrl} alt={itemTitle} />
-          <button onClick={togglePlayPause}>
+          <button onClick={(isPlaying && index === activeIndex) ? () => setIsPlaying(!isPlaying) : handleActiveIndex}>
             <img
               className={Styles.playButton}
               src={

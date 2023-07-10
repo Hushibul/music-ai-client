@@ -1,9 +1,9 @@
 //===  Libraries
-import { useState } from "react";
+import {useEffect, useState} from "react";
 import { useLocation } from "react-router-dom";
 
 //=== Components
-import MusicCard from "../../components/cards/MusicCard";
+import MusicCard from "../../components/Cards/MusicCard";
 import MusicHeading from "../../components/heading/MusicHeading";
 import { catPlaylist } from "../../constant/catPlaylist";
 import useAudio from "../../hooks/useAudio";
@@ -22,10 +22,6 @@ const Category = () => {
   const [audio, setAudio] = useState<any | null>(null);
   const [catWrap, setCatWrap] = useState<boolean>(true);
 
-  const togglePlayPause = (): void => {
-    setIsPlaying(!isPlaying);
-  };
-
   const handleActiveIndex = (
     itemData: any,
     cardIndex: any,
@@ -33,12 +29,13 @@ const Category = () => {
   ): void => {
     // waveSurferObj.playPause();
     setAudio(audio);
-    setIsPlaying(!isPlaying);
+    setIsPlaying(true);
     setActiveIndex(cardIndex);
     setMusicData(itemData);
     setCatWrap(false);
     setIsVisible(true);
   };
+
 
   const nextSong = (): void => {
     let prevState: number;
@@ -52,6 +49,7 @@ const Category = () => {
       // setMusicData(catPlaylist[prevState]);
     }
   };
+
 
   const prevSong = (): void => {
     let prevState: number;
@@ -88,16 +86,14 @@ const Category = () => {
             {...item}
             index={index}
             activeIndex={activeIndex}
-            handleActiveIndex={() =>
-              handleActiveIndex(item, index, item.itemUrl)
-            }
+            handleActiveIndex={() => handleActiveIndex(item, index, item.itemUrl)}
           />
         ))}
       </div>
 
       <AudioPlayer
         audio={audio}
-        togglePlayPause={togglePlayPause}
+        togglePlayPause={() => setIsPlaying(!isPlaying)}
         nextSong={nextSong}
         prevSong={prevSong}
       />
